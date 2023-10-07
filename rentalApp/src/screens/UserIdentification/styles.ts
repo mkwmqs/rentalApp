@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-
+import fonts from '../../styles/fonts'
 
 export const styles = StyleSheet.create({
 container:{
@@ -52,7 +52,7 @@ info:{
   alignItems:'center',
   margin:16,
   alignContent:'space-between',
-  // fontFamily:fonts.text
+   fontFamily:fonts.desription
 },
 textInfo:{
   color: 'black',
@@ -72,7 +72,7 @@ continueButton:{
   justifyContent:'center',
   alignItems:'center',
   fontWeight:'bold',
-  // fontFamily:fonts.text
+   fontFamily:fonts.desription
 },
 buttonText:{
   color:'white',
@@ -89,6 +89,6 @@ loginButton:{
   paddingHorizontal:20,
   borderWidth:1,
   margin:8,
-  // fontFamily:fonts.text
+   fontFamily:fonts.desription
 }
 })

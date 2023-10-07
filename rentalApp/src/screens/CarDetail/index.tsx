@@ -1,11 +1,11 @@
-import { useRef, useState } from 'react';
-import { Animated, FlatList, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Animated, FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 
 import slides from '../../../slides';
 import { CarDetailItem } from '../../components/CarDetailItem';
 import { styles } from './styles';
 import { Paginator } from '../../components/Paginator';
-import { IconElement } from '../../components/IconElement';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 export function CarDetail() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -18,25 +18,70 @@ export function CarDetail() {
   const scrollX = useRef(new Animated.Value(0)).current
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
   return (
-    <>
-        <View style={styles.carousel}>
-          <FlatList data={slides}
-            renderItem={({ item }) => <CarDetailItem item={item} />}
-            horizontal
-            pagingEnabled
-            bounces={false}
-            keyExtractor={(item) => item.id}
-            showsHorizontalScrollIndicator={false}
-            onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }],
-              { useNativeDriver: false })}
-            scrollEventThrottle={32}
-            onViewableItemsChanged={viewableItemsChanged}
-            viewabilityConfig={viewConfig}
-            ref={slidesRef}
-          />
-          <Paginator data={slides} scrollX={scrollX} />
-        </View> 
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.carousel}>
+        <FlatList data={slides}
+          renderItem={({ item }) => <CarDetailItem item={item} />}
+          horizontal
+          pagingEnabled
+          bounces={false}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false })}
+          scrollEventThrottle={32}
+          onViewableItemsChanged={viewableItemsChanged}
+          viewabilityConfig={viewConfig}
+          ref={slidesRef}
+        />
+        <Paginator data={slides} scrollX={scrollX} />
+      </View>
+      <View style={styles.descriptionRow}>
+        <Text style={styles.header}>Tiguan 2.0 TSI</Text>
+        <Icon name='star' size={24}><Text style={styles.header}>3.0</Text></Icon>
+      </View>
+      <View style={styles.descriptionRow}>
+        <Text style={styles.subtitle}>Ano 2019</Text>
+        <Text style={styles.subtitle}>Recife - PE</Text>
+      </View>
+      <View style={styles.descriptionRow}>
+        <Text style={styles.subtitle}>34.342 Km</Text>
+        <Text style={styles.subtitle}>1 - 6 de setembro</Text>
+      </View>
+      <View style={[styles.descriptionRow, { marginTop: 24 }]}>
+        <Text style={styles.comments}>7 comentários</Text>
+        <Icon name='user' size={18}><Text style={styles.comments}>{'  '}Hoster 10</Text></Icon>
+      </View>
+      <View style={styles.line} />
+      <View style={styles.descriptionRow}>
+        <View style={{
+          width: '50%',
+          padding: 10,
+          borderColor: 'gray',
+        }}>
+          <Text numberOfLines={2} style={styles.descriptionTitle}>Suv: para a família alugado por Maria</Text>
+        </View>
+        <Image source={require('../../../assets/domestic-dog_thumb_square.jpg')} style={styles.thumbnail} />
+      </View>
+      <View style={styles.descriptionBox}>
+        <Text style={styles.subtitle}>7 lugares - ar condicionado - alarme
+          direção elétrica - câmbio automático
+          demais dados cadastrado do carro </Text>
+      </View>
+      <View style={styles.line} />
 
-    </>
+      <View style={[styles.descriptionRow,{alignItems:'flex-start'}]}>
+
+        <Icon name='user' size={18} style={{marginTop:8}} />
+      
+        <View style={styles.descriptionBox} >
+        <Text style={styles.header}>Maria é um Hoster 10</Text>
+          <Text style={styles.subtitle}>Hoster 10 é um Hoster experiente e
+            muito bem avaliado, comprometido em locar veículos, oferecendo uma
+            experiência incrível para os Renters. </Text>
+        </View>
+      </View>
+      <View style={styles.line} />
+    </SafeAreaView >
   )
 }

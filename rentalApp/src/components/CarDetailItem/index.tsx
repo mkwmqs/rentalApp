@@ -17,7 +17,7 @@ export function CarDetailItem({ item }: itemSlideProps) {
 
   return (
     <View style={[styles.container, { width }]}>
-      <Image source={  item.img } style={[styles.image, { width,height:height/3.5, resizeMode: 'stretch' }]} />
+      <Image source={  item.img } style={[styles.image, { width,height:height/3.5, resizeMode: 'cover' }]} />
     </View>
   )
 }
