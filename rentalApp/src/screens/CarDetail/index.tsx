@@ -1,11 +1,15 @@
+import { AirbnbRating } from '@rneui/themed';
 import React, { useRef, useState } from 'react';
 import { Animated, FlatList, Image, SafeAreaView, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import slides from '../../../slides';
 import { CarDetailItem } from '../../components/CarDetailItem';
-import { styles } from './styles';
 import { Paginator } from '../../components/Paginator';
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import { styles } from './styles';
+import fonts from '../../styles/fonts';
+
+
 
 export function CarDetail() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -17,6 +21,9 @@ export function CarDetail() {
 
   const scrollX = useRef(new Animated.Value(0)).current
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
+  const ratingCompleted = (rating: number) => {
+    console.log('Rating is: ' + rating);
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.carousel}>
@@ -70,18 +77,40 @@ export function CarDetail() {
       </View>
       <View style={styles.line} />
 
-      <View style={[styles.descriptionRow,{alignItems:'flex-start'}]}>
+      <View style={[styles.descriptionRow, { alignItems: 'flex-start' }]}>
 
-        <Icon name='user' size={18} style={{marginTop:8}} />
-      
+        <Icon name='user' size={18} style={{ marginTop: 8 }} />
+
         <View style={styles.descriptionBox} >
-        <Text style={styles.header}>Maria é um Hoster 10</Text>
+          <Text style={styles.header}>Maria é um Hoster 10</Text>
           <Text style={styles.subtitle}>Hoster 10 é um Hoster experiente e
             muito bem avaliado, comprometido em locar veículos, oferecendo uma
             experiência incrível para os Renters. </Text>
         </View>
       </View>
       <View style={styles.line} />
+      <View style={[styles.descriptionRow, { alignItems: 'flex-start' }]}>
+
+        <Icon name='car' size={18} style={{ marginTop: 8 }} />
+
+        <View style={styles.descriptionBox} >
+          <Text style={styles.header}>Avaliação do veículo</Text>
+          <View style={[{marginVertical:8},styles.ratingBox]}>
+            <AirbnbRating
+              isDisabled={true}
+              size={18}
+              defaultRating={4}
+              showRating={false}
+            />
+            <Text style={{fontFamily:fonts.title,paddingHorizontal:12}}>4.7 out of 5</Text>
+          </View>
+          <View style={[styles.ratingBox,{paddingHorizontal:8}]}>
+            <Text style={styles.ratingText}>147 global ratings</Text>
+          </View>
+        </View>
+
+      </View>
+
     </SafeAreaView >
   )
 }

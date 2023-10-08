@@ -47,5 +47,15 @@ export const styles = StyleSheet.create({
     width:'80%',
     paddingHorizontal:22,
   },
+  ratingBox:{
+    justifyContent: 'flex-start',
+     flexDirection: 'row',
+     alignItems:'center',
+
+  },
+  ratingText:{
+    fontFamily:fonts.desription,
+    fontSize:12,
+  }
 
 });
