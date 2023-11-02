@@ -9,6 +9,7 @@ import { Paginator } from '../../components/Paginator';
 import { styles } from './styles';
 import fonts from '../../styles/fonts';
 import { ProgressBar } from '../../components/ProgressBar';
+import { CommentCard } from '../../components/CommentCard';
 
 
 
@@ -123,7 +124,10 @@ export function CarDetail() {
       <ProgressBar data={5} widthBar={widthBar} star={3} />
       <ProgressBar data={0} widthBar={widthBar} star={2} />
       <ProgressBar data={2} widthBar={widthBar} star={1} />
-   
+      </View>
+      <View style={styles.commentCard}>
+        <CommentCard />
+        <CommentCard />
       </View>
     </ScrollView >
   )

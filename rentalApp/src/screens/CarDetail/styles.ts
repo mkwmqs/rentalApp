@@ -60,4 +60,7 @@ export const styles = StyleSheet.create({
     marginHorizontal:32,
     paddingLeft:10
   },
+  commentCard:{
+    flexDirection:'row'
+  }
 });
