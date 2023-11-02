@@ -61,6 +61,13 @@ export const styles = StyleSheet.create({
     paddingLeft:10
   },
   commentCard:{
-    flexDirection:'row'
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  lightButton:{
+    marginHorizontal:28,
+    justifyContent:'center',
+  
   }
 });

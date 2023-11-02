@@ -10,6 +10,7 @@ import { styles } from './styles';
 import fonts from '../../styles/fonts';
 import { ProgressBar } from '../../components/ProgressBar';
 import { CommentCard } from '../../components/CommentCard';
+import { LightButton } from '../../components/lightButton';
 
 
 
@@ -19,7 +20,7 @@ export function CarDetail() {
   const viewableItemsChanged = useRef(({ viewableItems }: any) => {
     setCurrentIndex(viewableItems[0].index)
   }).current
-
+  const commentCount = 7
   const onLayout = (event: { nativeEvent: { layout: { x: any; y: any; height: number; width: number; }; }; }) => {
     const { x, y, height, width } = event.nativeEvent.layout;
     setWidthBar(width)
@@ -128,6 +129,9 @@ export function CarDetail() {
       <View style={styles.commentCard}>
         <CommentCard />
         <CommentCard />
+      </View>
+      <View style={styles.lightButton}>
+        <LightButton title={`mostrar todos os ${commentCount} comentarios`} />
       </View>
     </ScrollView >
   )
