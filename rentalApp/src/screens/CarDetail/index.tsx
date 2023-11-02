@@ -1,6 +1,6 @@
 import { AirbnbRating } from '@rneui/themed';
 import React, { useRef, useState } from 'react';
-import { Animated, FlatList, Image, SafeAreaView, Text, View } from 'react-native';
+import { Animated, FlatList, Image, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import slides from '../../../slides';
@@ -8,14 +8,21 @@ import { CarDetailItem } from '../../components/CarDetailItem';
 import { Paginator } from '../../components/Paginator';
 import { styles } from './styles';
 import fonts from '../../styles/fonts';
+import { ProgressBar } from '../../components/ProgressBar';
 
 
 
 export function CarDetail() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [widthBar, setWidthBar] = useState(0)
   const viewableItemsChanged = useRef(({ viewableItems }: any) => {
     setCurrentIndex(viewableItems[0].index)
   }).current
+
+  const onLayout = (event: { nativeEvent: { layout: { x: any; y: any; height: number; width: number; }; }; }) => {
+    const { x, y, height, width } = event.nativeEvent.layout;
+    setWidthBar(width)
+  }
 
   const slidesRef = useRef(null);
 
@@ -25,7 +32,7 @@ export function CarDetail() {
     console.log('Rating is: ' + rating);
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
       <View style={styles.carousel}>
         <FlatList data={slides}
           renderItem={({ item }) => <CarDetailItem item={item} />}
@@ -95,22 +102,29 @@ export function CarDetail() {
 
         <View style={styles.descriptionBox} >
           <Text style={styles.header}>Avaliação do veículo</Text>
-          <View style={[{marginVertical:8},styles.ratingBox]}>
+          <View style={[{ marginVertical: 8 }, styles.ratingBox]}>
             <AirbnbRating
               isDisabled={true}
               size={18}
               defaultRating={4}
               showRating={false}
             />
-            <Text style={{fontFamily:fonts.title,paddingHorizontal:12}}>4.7 out of 5</Text>
+            <Text style={{ fontFamily: fonts.title, paddingHorizontal: 12 }}>4.7 out of 5</Text>
           </View>
-          <View style={[styles.ratingBox,{paddingHorizontal:8}]}>
+          <View style={[styles.ratingBox, { paddingHorizontal: 8 }]}>
             <Text style={styles.ratingText}>147 global ratings</Text>
           </View>
         </View>
 
       </View>
-
-    </SafeAreaView >
+      <View style={styles.barContainer} onLayout={onLayout}>
+      <ProgressBar data={84} widthBar={widthBar} star={5} />
+      <ProgressBar data={9} widthBar={widthBar} star={4} />
+      <ProgressBar data={5} widthBar={widthBar} star={3} />
+      <ProgressBar data={0} widthBar={widthBar} star={2} />
+      <ProgressBar data={2} widthBar={widthBar} star={1} />
+   
+      </View>
+    </ScrollView >
   )
 }
