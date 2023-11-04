@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     padding:8,
     borderWidth:2,
     borderColor:'gray',
-    borderRadius:4
+    borderRadius:8
   },
   text: {
     fontFamily: fonts.desription,

@@ -120,11 +120,11 @@ export function CarDetail() {
 
       </View>
       <View style={styles.barContainer} onLayout={onLayout}>
-      <ProgressBar data={84} widthBar={widthBar} star={5} />
-      <ProgressBar data={9} widthBar={widthBar} star={4} />
-      <ProgressBar data={5} widthBar={widthBar} star={3} />
-      <ProgressBar data={0} widthBar={widthBar} star={2} />
-      <ProgressBar data={2} widthBar={widthBar} star={1} />
+        <ProgressBar data={84} widthBar={widthBar} star={5} />
+        <ProgressBar data={9} widthBar={widthBar} star={4} />
+        <ProgressBar data={5} widthBar={widthBar} star={3} />
+        <ProgressBar data={0} widthBar={widthBar} star={2} />
+        <ProgressBar data={2} widthBar={widthBar} star={1} />
       </View>
       <View style={styles.commentCard}>
         <CommentCard />
@@ -133,6 +133,17 @@ export function CarDetail() {
       <View style={styles.lightButton}>
         <LightButton title={`mostrar todos os ${commentCount} comentarios`} />
       </View>
+      <View style={styles.line} />
+      <View style={[styles.descriptionRow, { alignItems: 'flex-start' }]}>
+
+        <Icon name='calendar' size={18} style={{ marginTop: 8 }} />
+        <View style={[styles.descriptionBox,{justifyContent:'space-between'}]}>
+          <Text style={styles.header}>Cancelaemnto</Text>
+          <Text style={[styles.subtitle,{marginVertical:12}]}>Cancelamento gratuito até o dia inidicado pela Hoster</Text>
+          <Text style={[styles.subtitle,{textDecorationLine:'underline'}]}>Política de cancelamento</Text>
+        </View>
+      </View>
+      <View style={styles.line} />
     </ScrollView >
   )
 }
