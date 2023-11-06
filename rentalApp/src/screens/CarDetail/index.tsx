@@ -2,6 +2,9 @@ import { AirbnbRating } from '@rneui/themed';
 import React, { useRef, useState } from 'react';
 import { Animated, FlatList, Image, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import EvilIcon from 'react-native-vector-icons/EvilIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import slides from '../../../slides';
 import { CarDetailItem } from '../../components/CarDetailItem';
@@ -21,6 +24,7 @@ export function CarDetail() {
     setCurrentIndex(viewableItems[0].index)
   }).current
   const commentCount = 7
+  const benefitsCount = 10
   const onLayout = (event: { nativeEvent: { layout: { x: any; y: any; height: number; width: number; }; }; }) => {
     const { x, y, height, width } = event.nativeEvent.layout;
     setWidthBar(width)
@@ -137,13 +141,77 @@ export function CarDetail() {
       <View style={[styles.descriptionRow, { alignItems: 'flex-start' }]}>
 
         <Icon name='calendar' size={18} style={{ marginTop: 8 }} />
-        <View style={[styles.descriptionBox,{justifyContent:'space-between'}]}>
+        <View style={[styles.descriptionBox, { justifyContent: 'space-between' }]}>
           <Text style={styles.header}>Cancelaemnto</Text>
-          <Text style={[styles.subtitle,{marginVertical:12}]}>Cancelamento gratuito até o dia inidicado pela Hoster</Text>
-          <Text style={[styles.subtitle,{textDecorationLine:'underline'}]}>Política de cancelamento</Text>
+          <Text style={[styles.subtitle, { marginVertical: 12 }]}>Cancelamento gratuito até o dia inidicado pela Hoster</Text>
+          <Text style={[styles.subtitle, { textDecorationLine: 'underline' }]}>Política de cancelamento</Text>
         </View>
       </View>
       <View style={styles.line} />
+
+
+      <View style={[styles.descriptionBox, { alignItems: 'center', justifyContent: 'center', marginLeft: 42 }]}>
+        <Text style={styles.header}>O que este veículo oferece?</Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <EvilIcon name='location' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Entrega em local diferente </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <MaterialCommunityIcons name='certificate-outline' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Certificado de Inspeção </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <MaterialCommunityIcons name='baby-carriage' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Bebe conforto </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <Icon name='snowflake' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Ar condicionado </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <Icon name='lock' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Alarme de segurança </Text>
+      </View>
+      <View style={styles.lightButton}>
+        <LightButton title={`mostrar todos as ${benefitsCount} comodidades`} />
+      </View>
+      <View style={styles.line} />
+
+      <View style={styles.descriptionBox}>
+        <Text style={[styles.descriptionTitle, { marginVertical: 12 }]}>Sobre Maria</Text>
+        <Text style={styles.subtitle}>Membro desde 2022</Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <EvilIcon name='star' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>30 avaliações </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <Ionicons name='shield-checkmark-outline' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Identidade verificada </Text>
+      </View>
+      <View style={[styles.descriptionRow, { alignItems: 'center', justifyContent: 'flex-start' }]}>
+        <Icon name='user' size={18} style={{ marginRight: 32, marginVertical: 12 }} />
+        <Text style={styles.subtitle}>Hoster nota 10 </Text>
+      </View>
+
+      <View style={styles.descriptionBox}>
+        <Text style={[styles.descriptionTitle, { marginVertical: 12 }]}>Durante a locação</Text>
+        <Text style={styles.subtitle}>Sou nascida resumo da pessoa que cadastrou</Text>
+      </View>
+
+
+      <View style={styles.descriptionBox}>
+        <Text style={[styles.descriptionTitle, { marginVertical: 12 }]}>Maria das Dores é uma Hoster nota 10</Text>
+        <Text style={styles.subtitle}>Texto explicando hoster nota 10</Text>
+      </View>
+      <View style={[styles.lightButton, { marginTop: 24 }]}>
+        <LightButton title='Fale com o Hoster' />
+      </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 18 }}>
+        <Text style={styles.subtitle}>Para proteger seu dinheiro e seus direitos nunca transfira dinheiro ou se comunique fora do App</Text>
+        <View style={styles.line} />
+      </View>
     </ScrollView >
   )
 }
