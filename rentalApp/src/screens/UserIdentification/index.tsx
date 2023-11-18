@@ -29,7 +29,7 @@ export function UserIdentification() {
 
       <View style={styles.container}>
         <View style={styles.topContent}>
-          <Text style={styles.text}>País/Região    </Text>
+          <Text style={styles.text}>País/Região</Text>
           <TextInput 
           style={styles.upperInput} 
             onChangeText={(value) => handleUpperInputChange(value)}

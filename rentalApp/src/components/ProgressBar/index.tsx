@@ -12,7 +12,9 @@ export function ProgressBar({ data, widthBar, star }: IProgressProps) {
   const [progress, setProgress] = useState(new Animated.Value(0))
 
   useEffect(() => {
+
     calculateProgress()
+    console.log("")
     return Animated.timing(progress, {
       toValue: 75,
       duration: 2000,

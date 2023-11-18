@@ -2,7 +2,7 @@ import { Inter_100Thin, Inter_400Regular, Inter_700Bold, useFonts } from '@expo-
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { CarDetail } from './src/screens/CarDetail';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,7 +22,7 @@ export default function App() {
     SplashScreen.hideAsync()
   }
   return (
-    <CarDetail />
+    <Routes />
   );
 }
 

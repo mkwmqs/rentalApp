@@ -124,7 +124,7 @@ export function CarDetail() {
 
       </View>
       <View style={styles.barContainer} onLayout={onLayout}>
-        <ProgressBar data={84} widthBar={widthBar} star={5} />
+      <ProgressBar data={50} widthBar={widthBar} star={5} />
         <ProgressBar data={9} widthBar={widthBar} star={4} />
         <ProgressBar data={5} widthBar={widthBar} star={3} />
         <ProgressBar data={0} widthBar={widthBar} star={2} />
