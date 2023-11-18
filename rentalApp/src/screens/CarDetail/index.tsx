@@ -13,7 +13,7 @@ import { styles } from './styles';
 import fonts from '../../styles/fonts';
 import { ProgressBar } from '../../components/ProgressBar';
 import { CommentCard } from '../../components/CommentCard';
-import { LightButton } from '../../components/lightButton';
+import { LightButton } from '../../components/LightButton';
 
 
 

@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacityProps, TouchableOpacity } from 'react-nativ
 import React from 'react'
 import { styles } from './styles';
 
+
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
 }
