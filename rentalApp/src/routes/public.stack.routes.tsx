@@ -4,22 +4,27 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { UserIdentification } from '../screens/UserIdentification';
 import { Welcome } from '../screens/Welcome';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { CreateUser } from '../screens/CreateUser';
 
 const StackRoutes = createStackNavigator();
 
 export const PublicRoutes = () => {
   return (
     <StackRoutes.Navigator
-    screenOptions={{
-      cardStyle: {
-        backgroundColor: Colors.white,
-      },
-      headerShown:false,
-    }}
-  >
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: Colors.white,
+        },
+        headerShown: false,
+      }}
+    >
       <StackRoutes.Screen
         name="Welcome"
         component={Welcome}
+      />
+      <StackRoutes.Screen
+        name='CreateUser'
+        component={CreateUser}
       />
       <StackRoutes.Screen
         name='UserIdentification'
