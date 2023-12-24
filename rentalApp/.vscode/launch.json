@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Android",
+      "request": "launch",
+      "type": "reactnative",
+      "platform": "android",
+      "sourceMaps": true,
+      "outDir": "${workspaceFolder}/.vscode/.react",
+      "port": 8081,
+      "scheme": "http",
+      "url": "localhost:8081",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+      "androidDevice": "emulator-5554", // Replace with your emulator device ID
+      "runArgs": [
+        "--no-jetifier",
+        "--port",
+        "8081"
+      ],
+      "preLaunchTask": "npm: start",
+      "postDebugTask": "npm: stop"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run Android with Debugger",
+      "configurations": ["Debug Android", "android.emulator"]
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-nat
 //import { Icon } from 'react-native-elements';
 
 import { styles } from './styles';
-//import fonts from '../../styles/fonts';
+
 
 
 
@@ -12,14 +12,14 @@ export function UserIdentification() {
   const [phone, setPhone] = useState('')
 
  function handleUpperInputChange(value: string){
-  console.log(value)
+ 
   if(value == null){
     setRegion('Brasil (+55)')
   }
   setRegion(value)
   }
   function handleBottomInputChange(value: string){
-    console.log(value)
+
     setPhone(value)
     }
   return (

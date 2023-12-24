@@ -7,11 +7,57 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { InfoBottom } from '../../components/InfoBottom';
 import { styles } from './styles';
 import { CheckBox } from 'react-native-elements';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { ColoredButton } from '../../components/ColoredButton';
+import color from '../../styles/color';
+
+interface createUserProps {
+  name: string,
+  email: string,
+  date: string,
+  password: string,
+  phone: string
+}
 
 export function CreateUser() {
   const navigator = useNavigation<StackNavigationProp<ParamListBase>>()
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
+
+  const { control, handleSubmit, formState: { errors } } = useForm<createUserProps>({})
+
+  const onBlurPhoneHandler = (value: string, setValue: (input: string) => void) => {
+    const numericValue = value.replace(/\D/g, '');
+    if (numericValue.length === 11) {
+      const formattedPhoneNumber = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2, 7)}-${numericValue.slice(7)}`;
+      setValue(formattedPhoneNumber);
+    } else {
+      setValue(value);
+    }
+  };
+
+
+  const onBlurDate = (value: string, setValue: (input: string) => void) => {
+    if (value.length === 6) {
+      const day = value.slice(0, 2);
+      const month = value.slice(2, 4);
+      const year = value.slice(4);
+      setValue(`${day}/${month}/19${year}`)
+    } else if (value.length === 8) {
+      const day = value.slice(0, 2);
+      const month = value.slice(2, 4);
+      const year = value.slice(4);
+      setValue(`${day}/${month}/${year}`)
+    } else {
+      alert('Digite apenas numeros do seu nascimento')
+    }
+  };
+
+  const handleSignIn: SubmitHandler<createUserProps> = (data: createUserProps) => {
+  
+    navigator.navigate("PhoneConfirmation", { formData: data.phone })
+  }
+
   function handleReturnScreen() {
     navigator.navigate('Welcome')
   }
@@ -39,7 +85,7 @@ export function CreateUser() {
   }, []);
   return (
     <
-    >
+      >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
@@ -55,31 +101,94 @@ export function CreateUser() {
           </Text>
           <View style={styles.formWrapper}>
             <Text style={styles.text}>Nome Completo</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Digite seu nome completo'
+            <Controller
+              control={control}
+              name="name"
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder='Digite seu nome completo'
+                />
+              )}
             />
+
             <Text style={styles.text}>Telefone</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Digite seu telefone'
+            <Controller
+              control={control}
+              name="phone"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={() => onBlurPhoneHandler(value, onChange)}
+                  value={value}
+                  keyboardType="numeric"
+                  placeholder='Digite seu telefone'
+                />
+              )}
             />
+
             <Text style={styles.text}>Data de Nascimento</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Ex. 01/10/2023'
+            <Controller
+              control={control}
+              name="date"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={() => onBlurDate(value, onChange)}
+                  value={value}
+                  placeholder='Ex. 01/10/2023'
+                  maxLength={10}
+                  keyboardType="numeric"
+                />
+              )}
             />
+
             <Text style={styles.text}>E-mail</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Digite seu E-mai'
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  keyboardType="email-address"
+                  placeholder='Digite seu E-mail'
+                />
+              )}
+              rules={{
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              }}
+              defaultValue=""
             />
+
+
+
+
             <Text style={styles.text}>Crie sua senha</Text>
-            <TextInput
-              style={[styles.input, { marginBottom: 0 }]}
-              placeholder="Digite sua senha ubinner"
-              secureTextEntry={!isChecked}
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  style={[styles.input, { marginBottom: 0 }]}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Digite sua senha ubinner"
+                  secureTextEntry={!isChecked}
+                />
+              )}
             />
+
 
             <CheckBox
               title="Mostrar senha"
@@ -88,8 +197,13 @@ export function CreateUser() {
               containerStyle={styles.checkboxContainer}
             />
 
-
+            <ColoredButton
+              color={color.light_blue}
+              title='Continuar'
+              onPress={handleSubmit(handleSignIn)}
+            />
           </View>
+
         </ScrollView>
 
       </KeyboardAvoidingView>
