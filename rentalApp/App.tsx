@@ -1,7 +1,7 @@
 import { Inter_100Thin, Inter_400Regular, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { ProfileCard } from './src/Perfil';
+import { ProfileInformation } from './src/Perfil2';
 import React from 'react';
 
 
@@ -25,7 +25,7 @@ export default function App() {
     SplashScreen.hideAsync()
   }
   return (
-   <ProfileCard />
+   <ProfileInformation />
   );
 }
 
