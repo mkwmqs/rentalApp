@@ -7,8 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    gap: 20,
+    margin: 20,
+    padding: 15,
+    gap: 18,
   },
   section: {
     flexDirection: 'row',
@@ -37,13 +38,13 @@ export const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     elevation: 5,
-    marginTop: 20,
+    marginTop: 20
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 80,
-    marginBottom: 10,
+    marginBottom: 10
     
   },
   title: {
@@ -53,6 +54,7 @@ export const styles = StyleSheet.create({
   },
   fim: {
     marginLeft: 10,
+    padding: 10
   },
   button: {
     backgroundColor: '#63E1FD',
