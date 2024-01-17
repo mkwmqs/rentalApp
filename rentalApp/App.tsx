@@ -3,6 +3,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { ProfileInformation } from './src/Perfil2';
 import React from 'react';
+import { NativeBaseProvider } from 'native-base';
+
 
 
 
@@ -25,7 +27,11 @@ export default function App() {
     SplashScreen.hideAsync()
   }
   return (
-   <ProfileInformation />
+    <NativeBaseProvider >
+    <ProfileInformation />
+    </NativeBaseProvider>
+   
+
   );
 }
 
