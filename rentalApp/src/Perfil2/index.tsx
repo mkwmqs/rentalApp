@@ -16,9 +16,9 @@ export const ProfileInformation = () => {
   const [indentification, setIndentification] = useState(true) 
   const [cpf, setCpf] = useState(true) 
   const [email, setEmail] = useState(true) 
-  const [fone, setFone] = useState(false) 
-  const [creditCard, setCreditcard] = useState(false) 
-  const [address, setAddress] = useState(false) 
+  const [fone, setFone] = useState(true) 
+  const [creditCard, setCreditcard] = useState(true) 
+  const [address, setAddress] = useState(true) 
 
 
 
