@@ -7,6 +7,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { CreateUser } from '../screens/CreateUser';
 import { PhoneConfirmation } from '../screens/PhoneConfirmation';
 import { ProfileVerification } from '../screens/ProfileVerification';
+import { ProfileScreen } from '../screens/Profile';
 
 const StackRoutes = createStackNavigator();
 
@@ -40,6 +41,10 @@ export const PublicRoutes = () => {
 <StackRoutes.Screen
         name='ProfileVerification'
         component={ProfileVerification}
+      />
+      <StackRoutes.Screen
+        name='ProfileScreen'
+        component={ProfileScreen}
       />
     </StackRoutes.Navigator>
   )
