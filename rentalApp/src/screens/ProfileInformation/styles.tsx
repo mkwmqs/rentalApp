@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import fonts from "../styles/fonts";
-import color from "../styles/color";
+import fonts from "../../styles/fonts";
+import color from "../../styles/color";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -54,7 +54,8 @@ export const styles = StyleSheet.create({
   },
   fim: {
     marginLeft: 10,
-    padding: 10
+    padding: 10,
+    marginBottom:24
   },
   button: {
     backgroundColor: '#63E1FD',

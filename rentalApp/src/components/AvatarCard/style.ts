@@ -16,7 +16,8 @@ avatar: {
     padding: 20,
     backgroundColor: '#fff',
     elevation: 5,
-    marginTop: 20
+    marginTop: 20,
+    borderRadius:10
   },
   sectionHeader: {
     fontSize: 25,
