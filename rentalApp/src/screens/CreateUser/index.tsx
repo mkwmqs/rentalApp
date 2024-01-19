@@ -10,6 +10,9 @@ import { CheckBox } from 'react-native-elements';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, dbFirestore } from '../../../firebaseConfig';
+import { addDoc, collection } from 'firebase/firestore';
 
 interface createUserProps {
   name: string,
@@ -48,14 +51,39 @@ export function CreateUser() {
       const month = value.slice(2, 4);
       const year = value.slice(4);
       setValue(`${day}/${month}/${year}`)
+    } else if (value.length === 10) {
+      const dateRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
+      if (dateRegex.test(value)) {
+        setValue(value)
+      } else {
+        alert('Digite apenas numeros do seu nascimento')
+      }
     } else {
       alert('Digite apenas numeros do seu nascimento')
     }
   };
 
-  const handleSignIn: SubmitHandler<createUserProps> = (data: createUserProps) => {
-  
-    navigator.navigate("PhoneConfirmation", { formData: data.phone })
+  const handleSignIn: SubmitHandler<createUserProps> = async (data: createUserProps) => {
+    try {
+      if (data) {
+        console.log(data)
+   
+        await createUserWithEmailAndPassword(auth, data.email, data.password)
+
+        const docRef = await addDoc(collection(dbFirestore, "user"), {
+          name: data.name,
+          birthday: data.date,
+          phone: data.phone
+        })
+        console.log("Document written with ID: ", docRef.id);
+        navigator.navigate("PhoneConfirmation", { formData: data.phone })
+      }
+    } catch (err) {
+      console.log(err)
+      alert(err)
+    }
+
+
   }
 
   function handleReturnScreen() {

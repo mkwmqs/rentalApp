@@ -27,7 +27,6 @@ export function PhoneConfirmation({ route }: PhoneConfirmationProps) {
   }
 
   function handleCodeChange(data: string) {
-    console.log(data)
     setCode(data)
   }
   return (

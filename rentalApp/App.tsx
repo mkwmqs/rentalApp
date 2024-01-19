@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import React from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { ProfileInformation } from './src/screens/ProfileInformation'
+import { Routes } from './src/routes';
 
 
 
@@ -28,7 +29,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <ProfileInformation />
+      <Routes />
     </NativeBaseProvider>
 
 
