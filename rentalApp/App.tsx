@@ -5,6 +5,7 @@ import React from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { ProfileInformation } from './src/screens/ProfileInformation'
 import { Routes } from './src/routes';
+import { CarDetail } from './src/screens/CarDetail';
 
 
 

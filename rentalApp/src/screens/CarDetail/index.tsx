@@ -13,7 +13,10 @@ import { styles } from './styles';
 import fonts from '../../styles/fonts';
 import { ProgressBar } from '../../components/ProgressBar';
 import { CommentCard } from '../../components/CommentCard';
-import { LightButton } from '../../components/LightButton';
+import { ColoredButton } from '../../components/ColoredButton';
+import color from '../../styles/color';
+import { LightButton } from '../../components/lightButton';
+
 
 
 
@@ -36,6 +39,7 @@ export function CarDetail() {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
   const ratingCompleted = (rating: number) => {
     console.log('Rating is: ' + rating);
+    console.log('kaakaka')
   };
   return (
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
@@ -135,7 +139,7 @@ export function CarDetail() {
         <CommentCard />
       </View>
       <View style={styles.lightButton}>
-        <LightButton title={`mostrar todos os ${commentCount} comentarios`} />
+        <ColoredButton color={color.light_grey} title={`mostrar todos os ${commentCount} comentarios`} />
       </View>
       <View style={styles.line} />
       <View style={[styles.descriptionRow, { alignItems: 'flex-start' }]}>

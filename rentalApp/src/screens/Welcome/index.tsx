@@ -14,7 +14,7 @@ export function Welcome() {
     navigator.navigate('CreateUser')
   }
   function handleLoginUser(){
-    navigator.navigate("UserIdentification")
+    navigator.navigate("SignIn")
   }
 
   return (

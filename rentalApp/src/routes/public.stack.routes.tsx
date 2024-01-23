@@ -1,13 +1,12 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { UserIdentification } from '../screens/UserIdentification';
 import { Welcome } from '../screens/Welcome';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { CreateUser } from '../screens/CreateUser';
 import { PhoneConfirmation } from '../screens/PhoneConfirmation';
-import { ProfileVerification } from '../screens/ProfileVerification';
-import { ProfileScreen } from '../screens/Profile';
+import { SignIn } from '../screens/SignIn';
+// import { ProfileVerification } from '../screens/ProfileVerification';
+// import { ProfileScreen } from '../screens/Profile';
 
 const StackRoutes = createStackNavigator();
 
@@ -30,22 +29,22 @@ export const PublicRoutes = () => {
         component={CreateUser}
       />
       <StackRoutes.Screen
-        name='UserIdentification'
-        component={UserIdentification}
+        name='SignIn'
+        component={SignIn}
       />
       <StackRoutes.Screen
         name='PhoneConfirmation'
         component={PhoneConfirmation}
       />
 
-<StackRoutes.Screen
+{/* <StackRoutes.Screen
         name='ProfileVerification'
         component={ProfileVerification}
       />
       <StackRoutes.Screen
         name='ProfileScreen'
         component={ProfileScreen}
-      />
+      /> */}
     </StackRoutes.Navigator>
   )
 }
