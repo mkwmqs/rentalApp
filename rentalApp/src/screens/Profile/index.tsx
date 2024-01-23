@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {  Card } from 'native-base';
 
-const renderMenuItem = (iconName, text) => (
+const Item = (iconName, text) => (
   <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 10 }}>
     <View style={{ marginRight: 10, marginLeft: 10 }}>
       <Icon name={iconName} size={15} />
@@ -42,40 +42,40 @@ export const ProfileScreen = () => {
           
           <Text style={{ fontWeight: 'bold', margin: 20, padding: 10 }}>Configurações</Text>
 
-          {renderMenuItem("payment", "Pagamentos")}
+          {Item("payment", "Pagamentos")}
           <Divider mt={1} />
-          {renderMenuItem("info", "Informações pessoais")}
+          {Item("info", "Informações pessoais")}
           <Divider mt={1} />
-          {renderMenuItem("attach-money", "Impostos")}
+          {Item("attach-money", "Impostos")}
           <Divider mt={1} />
-          {renderMenuItem("security", "Login e Segurança")}
+          {Item("security", "Login e Segurança")}
           <Divider mt={1} />
-          {renderMenuItem("accessibility", "Acessibilidade")}
+          {Item("accessibility", "Acessibilidade")}
           <Divider mt={1} />
-          {renderMenuItem("notifications", "Notificação")}
+          {Item("notifications", "Notificação")}
           <Divider mt={1} />
-          {renderMenuItem("privacy-tip", "Privacidade e Compartilhamento")}
+          {Item("privacy-tip", "Privacidade e Compartilhamento")}
           <Divider mt={1} />
 
           <Text style={{ fontWeight: 'bold', marginVertical: 20, margin: 20 }}>Atendimento</Text>
 
-          {renderMenuItem("phone", "Acesse a central de ajuda")}
+          {Item("phone", "Acesse a central de ajuda")}
           <Divider mt={1} />
-          {renderMenuItem("security", "Ajuda com problema de segurança")}
+          {Item("security", "Ajuda com problema de segurança")}
           <Divider mt={1} />
-          {renderMenuItem("report-problem", "Reportar um problema no veículo")}
+          {Item("report-problem", "Reportar um problema no veículo")}
           <Divider mt={1} />
-          {renderMenuItem("info", "Como funciona o Ubiner")}
+          {Item("info", "Como funciona o Ubiner")}
           <Divider mt={1} />
-          {renderMenuItem("feedback", "Envie-nos o seu feedback")}
+          {Item("feedback", "Envie-nos o seu feedback")}
           <Divider mt={1} />
 
           <Text style={{ fontWeight: 'bold', marginVertical: 20, margin: 20 }}>Jurídico</Text>
-          {renderMenuItem("book", "Termos de Serviço")}
+          {Item("book", "Termos de Serviço")}
           <Divider mt={1} />
-          {renderMenuItem("book", "Política de Privacidade")}
+          {Item("book", "Política de Privacidade")}
           <Divider mt={1} />
-          {renderMenuItem("book", "Licenças de código aberto")}
+          {Item("book", "Licenças de código aberto")}
           <Divider mt={1} />
 
           <Text style={{ marginVertical: 20, margin: 20 }}>Sair da Conta</Text>

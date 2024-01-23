@@ -63,7 +63,7 @@ export const IdentiVerification = () => {
      
     <FormControl>
         <Radio.Group defaultValue="1" name="myRadioGroup" accessibilityLabel="Pick your favorite number">
-          <Radio value="hbilitacao" my={1}>
+          <Radio value="habilitacao" my={1}>
           Carteira de Habilitação 
           </Radio>
           <Radio value="residencia" my={2}>
