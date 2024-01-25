@@ -1,4 +1,4 @@
-import { Divider, Icon, ScrollView, Text, View } from "native-base";
+import { Divider, Icon, Input, ScrollView, Text, View } from "native-base";
 import React, { useState } from "react";
 import { Button } from 'native-base';
 import { ColoredButton } from "../../components/ColoredButton";
@@ -18,7 +18,11 @@ export const PersonalInformation = () => {
   const [address, setAddress] = useState('SQN 713 bloco Q apartamento 32 Cep 71.300.098   Brasília - DF')
   const [situacaoreceita, setSituacaoreceita] = useState('Regular')
 
+  const [isDisabled, setIsDisabled] = useState(true)
 
+function handleEdit(isDisabled){
+  setIsDisabled(!isDisabled)
+}
 
 
   return (
@@ -67,8 +71,14 @@ export const PersonalInformation = () => {
 
     <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15 }}>
       <Text style={{ fontWeight: 'bold', fontSize: 16, marginRight: 5 }}>Endereço Residencial:</Text>
-      <Text>{address}</Text>
+      <Input isDisabled={isDisabled}>{address}</Input>
     </View>
+    <View>
+      <Button onPress={handleEdit}>
+        Editar
+      </Button>
+    </View>
+
     <Divider mt={3} />
 
     <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15 }}>
