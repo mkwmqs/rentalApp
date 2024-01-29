@@ -5,8 +5,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { CreateUser } from '../screens/CreateUser';
 import { PhoneConfirmation } from '../screens/PhoneConfirmation';
 import { SignIn } from '../screens/SignIn';
-// import { ProfileVerification } from '../screens/ProfileVerification';
-// import { ProfileScreen } from '../screens/Profile';
 
 const StackRoutes = createStackNavigator();
 

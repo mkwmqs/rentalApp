@@ -2,8 +2,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-import { UserIdentification } from '../screens/UserIdentification'
-
 
 
 const StackRoutes = createStackNavigator()
@@ -19,10 +17,6 @@ export function PrivateRoutes() {
       }}
     >
 
-      <StackRoutes.Screen
-        name='UserIdentification'
-        component={UserIdentification}
-      />
 
     </StackRoutes.Navigator>
   )
