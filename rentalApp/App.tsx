@@ -5,6 +5,8 @@ import React from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { ProfileInformation } from './src/screens/ProfileInformation'
 import { Routes } from './src/routes';
+import { CarDetail } from './src/screens/CarDetail';
+import { NavBottom } from './src/components/NavBottom';
 
 
 
@@ -29,7 +31,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <Routes />
+      <NavBottom />
     </NativeBaseProvider>
 
 
