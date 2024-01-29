@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Icon, Image } from 'native-base';
 import { styles } from './styles';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export function NavBottom() {
@@ -12,11 +11,11 @@ export function NavBottom() {
       <View style={styles.bottomFixed}>
         <View style={styles.navRow}>
           <TouchableOpacity style={styles.iconItem}>
-            <Icon as={FontAwesome5Icon} name='search' size={8} />
+            <Icon as={Ionicons} name='search' size={8} />
             <Text>Explorar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconItem}>
-            <Icon as={FontAwesome5Icon} name='heart' size={8} />
+            <Icon as={Ionicons} name='heart-outline' size={8} />
             <Text>Favorito</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconItem}>
