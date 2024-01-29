@@ -33,7 +33,7 @@ export function NavBottom() {
             <Text>Mensagem</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconItem}>
-            <Icon as={Ionicons} name='search' size={8} />
+            <Icon as={Ionicons} name='person-circle-outline' size={8} />
             <Text>Perfil</Text>
           </TouchableOpacity>
         </View>
