@@ -4,8 +4,8 @@ import fonts from "../../styles/fonts";
 export const styles =  StyleSheet.create({
 
   container:{
-    position: 'absolute',
-    bottom: 0,
+  
+
     width:'100%',
   },
   content:{
@@ -22,7 +22,6 @@ export const styles =  StyleSheet.create({
   },
   horizontalLine: {
   height:1,
-  flex:1,
   backgroundColor:'gray'
   },
 })

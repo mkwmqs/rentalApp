@@ -7,6 +7,8 @@ import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ColoredButton } from '../../components/ColoredButton';
 
+
+
 export function SignIn() {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   function handleReturn() {
@@ -15,6 +17,7 @@ export function SignIn() {
 
   return (
     <>
+    
       <View mt='16' ml='8'>
         <TouchableOpacity onPress={handleReturn}>
           <Icon as={FontAwesome} name='arrow-left' color={color.texting} />
@@ -35,6 +38,7 @@ export function SignIn() {
       <View pt='2' pl='4' pr='4'>
         <ColoredButton color={color.light_blue} title='Já tenho uma conta' />
       </View>
+     
     </>
   )
 }

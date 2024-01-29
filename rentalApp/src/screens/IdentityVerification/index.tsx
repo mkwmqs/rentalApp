@@ -1,9 +1,10 @@
-import { Box, Center, CheckIcon, FormControl, Select, Radio, NativeBaseProvider,View, Text, Progress, WarningOutlineIcon, } from 'native-base';
+import { Box, Center, CheckIcon, FormControl, Select, Radio, NativeBaseProvider,View, Text, Progress, WarningOutlineIcon, ScrollView, } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
+
 
 
 
@@ -15,6 +16,8 @@ const Press = () => {
 export const IdentiVerification = () => {
 
   return (
+    <>
+    
     <View style={{ flex: 1, padding: 20, justifyContent: 'center',alignItems: 'center', gap: 18}}>
       <Text style={{fontSize: 18,fontWeight: 'bold',marginBottom: 10,textAlign: 'left'}}>Entre com seu documento de identificação, comprovante de residência e sua foto.</Text>
 
@@ -80,6 +83,9 @@ export const IdentiVerification = () => {
         <ColoredButton color={color.light_blue} title='Continuar' />
       </View>
     </View>
+  
+    
+    </>
     
   );
 };

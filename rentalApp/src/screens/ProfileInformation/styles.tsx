@@ -7,18 +7,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const styles = StyleSheet.create({
   container: {
-    margin: 20,
-    padding: 15,
-    gap: 18,
+    margin: 18,
+    padding: 10,
+    gap: 8,
   },
   section: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   sectionHeader: {
     fontSize: 25,
-    marginBottom: 8,
+    marginBottom: 4,
     
   },
   info: {

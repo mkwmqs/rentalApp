@@ -16,6 +16,7 @@ const Item = (iconName, text) => (
 export const ProfileScreen = () => {
   return (
     <>
+    
       <ScrollView>
         <Text style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20, fontWeight: 'bold', margin: 30, padding: 30, fontSize: 20 }}>Perfil</Text>
         <Center>
