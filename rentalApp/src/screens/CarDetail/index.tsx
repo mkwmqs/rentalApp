@@ -15,7 +15,7 @@ import { ProgressBar } from '../../components/ProgressBar';
 import { CommentCard } from '../../components/CommentCard';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
-import { LightButton } from '../../components/lightButton';
+
 
 
 
@@ -85,7 +85,7 @@ export function CarDetail() {
         }}>
           <Text numberOfLines={2} style={styles.descriptionTitle}>Suv: para a família alugado por Maria</Text>
         </View>
-        <Image source={require('../../../assets/domestic-dog_thumb_square.jpg')} style={styles.thumbnail} />
+        <Image source={require('../../../assets/domestic-dog_thumb_square.jpg')}  style={styles.thumbnail} />
       </View>
       <View style={styles.descriptionBox}>
         <Text style={styles.subtitle}>7 lugares - ar condicionado - alarme
@@ -178,7 +178,7 @@ export function CarDetail() {
         <Text style={styles.subtitle}>Alarme de segurança </Text>
       </View>
       <View style={styles.lightButton}>
-        <LightButton title={`mostrar todos as ${benefitsCount} comodidades`} />
+        {/* <LightButton title={`mostrar todos as ${benefitsCount} comodidades`} /> */}
       </View>
       <View style={styles.line} />
 
@@ -210,7 +210,7 @@ export function CarDetail() {
         <Text style={styles.subtitle}>Texto explicando hoster nota 10</Text>
       </View>
       <View style={[styles.lightButton, { marginTop: 24 }]}>
-        <LightButton title='Fale com o Hoster' />
+        {/* <LightButton title='Fale com o Hoster' /> */}
       </View>
       <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 18 }}>
         <Text style={styles.subtitle}>Para proteger seu dinheiro e seus direitos nunca transfira dinheiro ou se comunique fora do App</Text>
