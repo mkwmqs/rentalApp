@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
       padding: 10,
       justifyContent: 'center',
       alignItems: 'center',
-      gap: 18,
+      gap: 4,
     },
     title: {
       fontSize: 18,
@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
       backgroundColor: '#63E1FD',
       padding: 10,
       borderRadius: 5,
+      margin: 10
     },
     buttonText: {
       color: 'white',

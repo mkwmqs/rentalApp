@@ -7,6 +7,14 @@ import { ProfileInformation } from './src/screens/ProfileInformation'
 import { Routes } from './src/routes';
 import { CarDetail } from './src/screens/CarDetail';
 import { NavBottom } from './src/components/NavBottom';
+// import { SignIn } from './src/screens/SignIn';
+import { AuthScreen } from './src/screens/LoginRegistering';
+import { CreateUser } from './src/screens/CreateUser';
+import { ProfileScreen } from './src/screens/Profile';
+import { IdentiVerification } from './src/screens/IdentityVerification';
+import { ProfileVerification } from './src/screens/ProfileVerification';
+import { Welcome } from './src/screens/Welcome';
+import { SignIn } from './src/screens/SignIn';
 
 
 
@@ -31,7 +39,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <NavBottom />
+      <Welcome/>
     </NativeBaseProvider>
 
 

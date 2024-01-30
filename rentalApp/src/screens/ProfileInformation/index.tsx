@@ -7,6 +7,7 @@ import { AvatarCard } from '../../components/AvatarCard';
 import { ColoredButton } from '../../components/ColoredButton';
 import { styles } from './styles';
 import color from '../../styles/color';
+import { NavBottom } from '../../components/NavBottom';
 
 
 
@@ -25,11 +26,11 @@ export const ProfileInformation = () => {
 
   return (
 
-
+<>
     <ScrollView>
       <View style={styles.container}>
         <AvatarCard />
-
+<View></View>
         <Text style={styles.title}>Informações Confirmadas</Text>
 
         <View style={styles.section}>
@@ -69,10 +70,12 @@ export const ProfileInformation = () => {
       <Text style={styles.fim}>
         Seu perfil do Ubiner é uma parte importante de cada compartilhamento. Crie o seu para ajudar outros Hosters e Renters a conhecer você melhor.
       </Text>
-      <View style={{paddingHorizontal:10}}>
+      <View style={{paddingHorizontal:20, margin:10, padding:15}}>
         <ColoredButton color={color.light_blue} title='Completar Perfil' />
       </View>
     </ScrollView>
+    <NavBottom/>
+    </>
   );
 };
 

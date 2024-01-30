@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { styles } from './styles';
+import { NavBottom } from '../../components/NavBottom';
+
+
+
+
 
 
 export const ProfileVerification = () => {
-
+ 
   const Verification = () => {
 
   };
 
   return (
+    <>
+   
+
     <View style={styles.container}>
       <Text style={styles.title}>Vamos adicionar seus documentos de identificação</Text>
       <Text style={styles.description}>
@@ -32,7 +40,14 @@ export const ProfileVerification = () => {
         <TouchableOpacity style={styles.button} onPress={Verification}>
           <Text style={styles.buttonText}>Adicionar Documentos de Identificação</Text>
         </TouchableOpacity>
-      
+       
     </View>
+    <View>
+    <NavBottom/>
+   
+    </View>
+    
+    
+    </>
   );
 };

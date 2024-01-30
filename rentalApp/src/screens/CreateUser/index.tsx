@@ -3,7 +3,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import { InfoBottom } from '../../components/InfoBottom';
 import { styles } from './styles';
 import { CheckBox } from 'react-native-elements';
@@ -11,7 +10,7 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, dbFirestore } from '../../../firebaseConfig';
+// import { auth, dbFirestore } from '../../../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 
 interface createUserProps {
@@ -63,28 +62,28 @@ export function CreateUser() {
     }
   };
 
-  const handleSignIn: SubmitHandler<createUserProps> = async (data: createUserProps) => {
-    try {
-      if (data) {
-        console.log(data)
+  // const handleSignIn: SubmitHandler<createUserProps> = async (data: createUserProps) => {
+  //   try {
+  //     if (data) {
+  //       console.log(data)
    
-        await createUserWithEmailAndPassword(auth, data.email, data.password)
+  //       await createUserWithEmailAndPassword(auth, data.email, data.password)
 
-        const docRef = await addDoc(collection(dbFirestore, "user"), {
-          name: data.name,
-          birthday: data.date,
-          phone: data.phone
-        })
-        console.log("Document written with ID: ", docRef.id);
-        navigator.navigate("PhoneConfirmation", { formData: data.phone })
-      }
-    } catch (err) {
-      console.log(err)
-      alert(err)
-    }
+  //       const docRef = await addDoc(collection(dbFirestore, "user"), {
+  //         name: data.name,
+  //         birthday: data.date,
+  //         phone: data.phone
+  //       })
+  //       console.log("Document written with ID: ", docRef.id);
+  //       navigator.navigate("PhoneConfirmation", { formData: data.phone })
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //     alert(err)
+  //   }
 
 
-  }
+  // }
 
   function handleReturnScreen() {
     navigator.navigate('Welcome')
@@ -228,7 +227,7 @@ export function CreateUser() {
             <ColoredButton
               color={color.light_blue}
               title='Continuar'
-              onPress={handleSubmit(handleSignIn)}
+              // onPress={handleSubmit(handleSignIn)}
             />
           </View>
 

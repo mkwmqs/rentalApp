@@ -15,6 +15,7 @@ interface ICardFormeProps {
     foiRejeitado?: boolean;
   }
   
+  
   export function CardInform({
     nome,
     foto, 
