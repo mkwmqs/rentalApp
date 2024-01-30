@@ -10,6 +10,7 @@ import color from '../../styles/color';
 export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedValue, setSelectedValue] = useState("1");
 
   const handleAppleLogin = () => {
     
@@ -23,13 +24,19 @@ export const SignIn = () => {
     
   };
 
- 
+  const handlePress = (value) => {
+    setSelectedValue(value);
+    // Faça algo com o valor selecionado, se necessário
+  };
+
+
 
   return (
     <>
-    <View >
-      <View style={{gap:8, borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:20, margin:20}}>
-      <Text >Email:</Text>
+    <View style={{marginTop:'14%', paddingHorizontal:12 }} >
+    <Text >Email</Text>
+      <View style={{ borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:16}}>
+      
       <TextInput
         placeholder="Digite seu e-mail"
         value={email}
@@ -37,9 +44,9 @@ export const SignIn = () => {
       />
       </View>
      
-
-      <View style={{gap:10, borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:20, margin:20}}>
-      <Text>Senha:</Text>
+      <Text>Senha </Text>
+      <View style={{marginTop:10, borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:16}}>
+     
       <TextInput
         placeholder="Digite sua senha"
         secureTextEntry
@@ -56,53 +63,60 @@ export const SignIn = () => {
           padding: 10,
           marginTop: 10,
         }}
-        // onPress={handleEmailLogin}
+        onPress={handleEmailLogin}
       >
         
       </TouchableOpacity> */}
-      <Text style={{textAlign: 'center',fontWeight: 'bold' }}>Enviaremos uma mensagem para você confirmando o seu número. Podem ser aplicadas tarifas padrões de dados e mensagens.</Text>
+      <Text style={{textAlign: 'center',fontWeight: 'bold', padding:4 }}>Enviaremos uma mensagem para você confirmando o seu número. Podem ser aplicadas tarifas padrões de dados e mensagens.</Text>
 
-      {/* <Center>
-      <Radio.Group name="exampleGroup" defaultValue="1" accessibilityLabel="pick a size">
-      <Stack direction={{
-      base: "column",
-      md: "row"
-    }} alignItems={{
-      base: "flex-start",
-      md: "center"
-    }} space={4} w="75%" maxW="300px">
-        <Radio value="1" colorScheme="red" size="sm" my={1}>
-          Small
-        </Radio>
-        <Radio value="2" colorScheme="green" size="md" my={1}>
-          Medium
-        </Radio>
-        <Radio value="3" colorScheme="yellow" size="lg" my={1}>
-          Large
-        </Radio>
-      </Stack>
-    </Radio.Group>
-    </Center> */}
-<View style={{padding: 8,marginTop: 4,}}>
-<ColoredButton color={color.light_blue} title='Continuar' />
-</View>
+      {/* <TouchableOpacity onPress={() => handlePress(selectedValue)}>
+          <Stack direction={{
+            base: "column",
+            md: "row"
+          }} alignItems={{
+            base: "flex-start",
+            md: "center"
+          }} space={4} w="75%" maxW="300px">
+            <Radio.Group
+              name="exampleGroup"
+              value={selectedValue}
+              accessibilityLabel="pick a size"
+              onChange={value => handlePress(value)}
+            >
+              <Radio value="1" colorScheme="red" size="sm" my={1}>
+                WhatsApp
+              </Radio>
+              <Radio value="2" colorScheme="red" size="sm" my={2}>
+                E-mail
+              </Radio>
+            </Radio.Group>
+          </Stack>
+        </TouchableOpacity> */}
+
+        <TouchableOpacity>
+          <Text style={{textAlign:'center', padding: 4}}>Esqueceu a senha? Clique aqui</Text>
+        </TouchableOpacity>
+
+            <View style={{padding: 4,marginTop: 2,}}>
+<          ColoredButton color={color.light_blue} title='Continuar' />
+             </View>
 
       <Divider mt={20}  style={{ width: '100%' }} />
-      <TouchableOpacity style={{borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 12,marginTop: 12,}} onPress={handleAppleLogin}>
+      <TouchableOpacity style={{ alignItems: 'center',borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 14,marginTop: 14,}} onPress={handleAppleLogin}>
         <Text>
           <Icon name="apple" /> <Text style={{fontWeight: 'bold'}}>Continuar com Apple</Text>
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 12,marginTop: 12,}} onPress={handleGoogleLogin}>
+      <TouchableOpacity style={{alignItems: 'center',borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 14,marginTop: 14,}} onPress={handleGoogleLogin}>
         <Text>
           <Icon name="google" /> <Text style={{fontWeight: 'bold'}}>Continuar com Google</Text>
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 12,marginTop: 12,}} onPress={handleFacebookLogin}>
+      <TouchableOpacity style={{alignItems: 'center',borderRadius:16, borderWidth: 1,borderColor: 'grey',padding: 14,marginTop: 14,}} onPress={handleFacebookLogin}>
         <Text>
-          <Icon name="facebook" /> <Text style={{fontWeight: 'bold',}}> Continuar com Facebook</Text>
+          <Icon name="facebook" /><Text style={{fontWeight: 'bold',}}> Continuar com Facebook</Text>
         </Text>
       </TouchableOpacity>
     </View>

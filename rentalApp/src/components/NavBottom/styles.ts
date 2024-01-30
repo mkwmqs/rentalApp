@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: "#f0f0f0",
-    paddingVertical: 36,
+    paddingVertical: 34,
     paddingHorizontal: 8,
   },
   navRow: {

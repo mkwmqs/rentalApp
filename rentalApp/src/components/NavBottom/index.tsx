@@ -5,7 +5,7 @@ import { styles } from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export function NavBottom() {
-  const img = require('../../../assets/ubinnerIcon.png')
+  const img = require('../../../assets/bibipi.png')
   return (
     <View style={styles.container}>
       <View style={styles.bottomFixed}>

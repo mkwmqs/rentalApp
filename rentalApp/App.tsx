@@ -39,7 +39,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <SignIn/>
+      <Welcome/>
     </NativeBaseProvider>
 
 
