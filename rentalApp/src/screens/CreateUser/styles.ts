@@ -5,8 +5,8 @@ import fonts from "../../styles/fonts";
 export const styles = StyleSheet.create({
   container: {
     
-    marginTop: '4%',
-    padding:8
+    marginTop: '8%',
+    padding:2
     
 
   },
@@ -15,10 +15,7 @@ export const styles = StyleSheet.create({
   },
   content: {
     marginTop: 18,
-    borderWidth: 1,
-    borderColor: color.light_grey,
-    borderRadius: 10,
-    padding: 10,
+    padding: 8,
     width: '100%',
     marginBottom: 84,
   },

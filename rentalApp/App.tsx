@@ -15,6 +15,7 @@ import { IdentiVerification } from './src/screens/IdentityVerification';
 import { ProfileVerification } from './src/screens/ProfileVerification';
 import { Welcome } from './src/screens/Welcome';
 import { SignIn } from './src/screens/SignIn';
+import { Notification } from './src/screens/EnableNotification';
 
 
 

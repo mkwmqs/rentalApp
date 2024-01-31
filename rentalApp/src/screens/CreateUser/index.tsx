@@ -10,14 +10,14 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-// import { auth, dbFirestore } from '../../../firebaseConfig';
+import { auth, dbFirestore } from '../../../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import { NavBottom } from '../../components/NavBottom';
 
 interface createUserProps {
   name: string,
   email: string,
-  date: string,
+  passwordConfirmation: string,
   password: string,
   phone: string
 }
@@ -26,6 +26,7 @@ export function CreateUser() {
   const navigator = useNavigation<StackNavigationProp<ParamListBase>>()
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
+ 
 
   const { control, handleSubmit, formState: { errors } } = useForm<createUserProps>({})
 
@@ -40,51 +41,37 @@ export function CreateUser() {
   };
 
 
-  const onBlurDate = (value: string, setValue: (input: string) => void) => {
-    if (value.length === 6) {
-      const day = value.slice(0, 2);
-      const month = value.slice(2, 4);
-      const year = value.slice(4);
-      setValue(`${day}/${month}/19${year}`)
-    } else if (value.length === 8) {
-      const day = value.slice(0, 2);
-      const month = value.slice(2, 4);
-      const year = value.slice(4);
-      setValue(`${day}/${month}/${year}`)
-    } else if (value.length === 10) {
-      const dateRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
-      if (dateRegex.test(value)) {
-        setValue(value)
+ 
+
+  const handleSignIn: SubmitHandler<createUserProps> = async (data: createUserProps) => {
+    try {
+      if (data) {
+        console.log(data)
+      if (data.passwordConfirmation === data.password){
+
+      
+        await createUserWithEmailAndPassword(auth, data.email, data.password)
+
+        const docRef = await addDoc(collection(dbFirestore, "user"), {
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          
+        })
+        console.log("Document written with ID: ", docRef.id);
+        navigator.navigate("PhoneConfirmation", { formData: data.phone })
+        
       } else {
-        alert('Digite apenas numeros do seu nascimento')
-      }
-    } else {
-      alert('Digite apenas numeros do seu nascimento')
+        alert ('A confirmação da senha não são iguais!')
+    }     
+  }
+    } catch (err) {
+      console.log(err)
+      alert(err)
     }
-  };
-
-  // const handleSignIn: SubmitHandler<createUserProps> = async (data: createUserProps) => {
-  //   try {
-  //     if (data) {
-  //       console.log(data)
-   
-  //       await createUserWithEmailAndPassword(auth, data.email, data.password)
-
-  //       const docRef = await addDoc(collection(dbFirestore, "user"), {
-  //         name: data.name,
-  //         birthday: data.date,
-  //         phone: data.phone
-  //       })
-  //       console.log("Document written with ID: ", docRef.id);
-  //       navigator.navigate("PhoneConfirmation", { formData: data.phone })
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //     alert(err)
-  //   }
-
-
-  // }
+    
+       
+  }
 
   function handleReturnScreen() {
     navigator.navigate('Welcome')
@@ -205,16 +192,15 @@ export function CreateUser() {
            <Text style={styles.text}>Confirme a senha</Text>
             <Controller
               control={control}
-              name="date"
+              name="passwordConfirmation"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   style={styles.input}
                   onChangeText={onChange}
-                  onBlur={() => onBlurDate(value, onChange)}
                   value={value}
                   placeholder='Confirme sua Senha'
-                  maxLength={10}
-                  keyboardType="numeric"
+                  secureTextEntry={!isChecked}
+                  
                 />
               )}
             />
@@ -239,6 +225,7 @@ export function CreateUser() {
 
       </KeyboardAvoidingView>
       {isKeyboardOpen ? null : <InfoBottom /> } 
+      
       <NavBottom/>
       
     </>
