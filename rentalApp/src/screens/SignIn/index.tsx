@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { View, Text,  Button } from 'native-base'
 import { Center, Divider, Radio, Stack } from 'native-base';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import {  TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import { InfoBottom } from '../../components/InfoBottom';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 export const SignIn = () => {
@@ -26,13 +28,15 @@ export const SignIn = () => {
 
   const handlePress = (value) => {
     setSelectedValue(value);
-    // Faça algo com o valor selecionado, se necessário
+    
   };
 
 
 
   return (
     <>
+    
+
     <View style={{marginTop:'14%', paddingHorizontal:12 }} >
     <Text >Email</Text>
       <View style={{ borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:16}}>

@@ -39,7 +39,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <Welcome/>
+      <Routes/>
     </NativeBaseProvider>
 
 

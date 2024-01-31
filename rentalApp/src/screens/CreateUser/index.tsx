@@ -12,6 +12,7 @@ import color from '../../styles/color';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 // import { auth, dbFirestore } from '../../../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
+import { NavBottom } from '../../components/NavBottom';
 
 interface createUserProps {
   name: string,
@@ -157,22 +158,7 @@ export function CreateUser() {
               )}
             />
 
-            <Text style={styles.text}>Data de Nascimento</Text>
-            <Controller
-              control={control}
-              name="date"
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChange}
-                  onBlur={() => onBlurDate(value, onChange)}
-                  value={value}
-                  placeholder='Ex. 01/10/2023'
-                  maxLength={10}
-                  keyboardType="numeric"
-                />
-              )}
-            />
+            
 
             <Text style={styles.text}>E-mail</Text>
             <Controller
@@ -199,8 +185,6 @@ export function CreateUser() {
             />
 
 
-
-
             <Text style={styles.text}>Crie sua senha</Text>
             <Controller
               control={control}
@@ -210,12 +194,30 @@ export function CreateUser() {
                   style={[styles.input, { marginBottom: 0 }]}
                   onChangeText={onChange}
                   value={value}
-                  placeholder="Digite sua senha ubinner"
+                  placeholder="Digite sua senha Bibipi"
                   secureTextEntry={!isChecked}
                 />
               )}
             />
 
+
+{/* // era data de nascimento */}
+           <Text style={styles.text}>Confirme a senha</Text>
+            <Controller
+              control={control}
+              name="date"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={() => onBlurDate(value, onChange)}
+                  value={value}
+                  placeholder='Confirme sua Senha'
+                  maxLength={10}
+                  keyboardType="numeric"
+                />
+              )}
+            />
 
             <CheckBox
               title="Mostrar senha"
@@ -229,12 +231,17 @@ export function CreateUser() {
               title='Continuar'
               // onPress={handleSubmit(handleSignIn)}
             />
+
+            <Text style={{padding:4}}>Ao selecionar Continuar, você aceito os Termos de Serviços, os Termos de Serviços de Pagamentos, a Política de Não Discriminação e reconheço a Política de Privacidade.</Text>
           </View>
 
         </ScrollView>
 
       </KeyboardAvoidingView>
-      {isKeyboardOpen ? null : <InfoBottom />}
+      {isKeyboardOpen ? null : <InfoBottom /> } 
+      <NavBottom/>
+      
     </>
+    
   )
 }
