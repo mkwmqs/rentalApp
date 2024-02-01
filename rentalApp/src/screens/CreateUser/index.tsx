@@ -14,6 +14,7 @@ import { auth, dbFirestore } from '../../../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import { NavBottom } from '../../components/NavBottom';
 
+
 interface createUserProps {
   name: string,
   email: string,
@@ -72,6 +73,18 @@ export function CreateUser() {
     
        
   }
+
+  
+
+  // const Password = () => {
+  //   const [password, setPassword] = useState('');
+  //   const [isValid, setIsValid] = useState(false);
+  
+  //   const validatePassword = () => {
+  //     setIsValid(password));
+  //   };
+
+
 
   function handleReturnScreen() {
     navigator.navigate('Welcome')
@@ -188,22 +201,37 @@ export function CreateUser() {
             />
 
 
-{/* // era data de nascimento */}
-           <Text style={styles.text}>Confirme a senha</Text>
-            <Controller
+           {/* // era data de nascimento */}
+             <Text style={styles.text}>Confirme a senha</Text>
+              <Controller
               control={control}
               name="passwordConfirmation"
               render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder='Confirme sua Senha'
-                  secureTextEntry={!isChecked}
-                  
-                />
-              )}
-            />
+              <>
+             <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder='Confirme sua Senha'
+              secureTextEntry={!isChecked}
+              // onBlur={validatePassword} 
+               />
+               
+             {/* {password.length > 0 && (
+              
+               <View>
+              <Text>{isValid ? 'Senha válida' : 'Senha inválida'}</Text>
+             {!(password) && <Text>Conter pelo menos uma letra maiúscula</Text>}
+             {!(password) && <Text>Conter pelo menos um número</Text>}
+             {!(password) && <Text>Conter pelo menos um caractere especial</Text>}
+             {password.length < 8 && <Text>No mínimo 8 caracteres</Text>}
+               </View>
+
+                )} */}
+             </>
+             )}
+             />
+
 
             <CheckBox
               title="Mostrar senha"
