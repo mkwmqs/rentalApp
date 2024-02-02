@@ -29,7 +29,7 @@ function handlerSignIn() {
         </TouchableOpacity>
       </View>
 
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+      <View style={{  justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
         <Image
           source={require('../../../assets/bibipi.png')}
           alt="icone da Bibipi"

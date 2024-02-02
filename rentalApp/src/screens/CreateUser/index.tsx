@@ -27,6 +27,8 @@ export function CreateUser() {
   const navigator = useNavigation<StackNavigationProp<ParamListBase>>()
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
+  const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(false);
  
 
   const { control, handleSubmit, formState: { errors } } = useForm<createUserProps>({})
@@ -48,7 +50,7 @@ export function CreateUser() {
     try {
       if (data) {
         console.log(data)
-      if (data.passwordConfirmation === data.password){
+      if (data.passwordConfirmation === data.password && isValid){
 
       
         await createUserWithEmailAndPassword(auth, data.email, data.password)
@@ -75,14 +77,30 @@ export function CreateUser() {
   }
 
   
-
-  // const Password = () => {
-  //   const [password, setPassword] = useState('');
-  //   const [isValid, setIsValid] = useState(false);
+    
   
-  //   const validatePassword = () => {
-  //     setIsValid(password));
-  //   };
+    const validatePassword = (value: string, setValue: (input: string) => void) => {
+      if (!!value) {
+
+      
+      setValue(value)
+       console.log (value)
+
+      const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/;
+     
+      if (regex.test(value ) && value.length >7)
+      { 
+        console.log ('Entrei aqui!')
+        setIsValid(true);
+        
+        
+      } else 
+      { console.log('Negação')
+        setIsValid(false)
+      }
+      setPassword(value);
+    }
+  };
 
 
 
@@ -214,20 +232,21 @@ export function CreateUser() {
               value={value}
               placeholder='Confirme sua Senha'
               secureTextEntry={!isChecked}
-              // onBlur={validatePassword} 
+              onBlur={()=> validatePassword (value, onChange)} 
                />
                
-             {/* {password.length > 0 && (
+             {password.length > 0 && (
               
                <View>
               <Text>{isValid ? 'Senha válida' : 'Senha inválida'}</Text>
-             {!(password) && <Text>Conter pelo menos uma letra maiúscula</Text>}
-             {!(password) && <Text>Conter pelo menos um número</Text>}
-             {!(password) && <Text>Conter pelo menos um caractere especial</Text>}
-             {password.length < 8 && <Text>No mínimo 8 caracteres</Text>}
+             {!(isValid) && <Text>Conter pelo menos uma letra maiúscula</Text>}
+             {!(isValid) && <Text>Conter pelo menos um número</Text>}
+             {!(isValid) && <Text>Conter pelo menos um caractere especial</Text>}
+             
+             {!isValid  && <Text>No mínimo 8 caracteres</Text>}
                </View>
 
-                )} */}
+                )}
              </>
              )}
              />
@@ -243,7 +262,7 @@ export function CreateUser() {
             <ColoredButton
               color={color.light_blue}
               title='Continuar'
-              // onPress={handleSubmit(handleSignIn)}
+              onPress={handleSubmit(handleSignIn)}
             />
 
             <Text style={{padding:4}}>Ao selecionar Continuar, você aceito os Termos de Serviços, os Termos de Serviços de Pagamentos, a Política de Não Discriminação e reconheço a Política de Privacidade.</Text>
@@ -251,8 +270,8 @@ export function CreateUser() {
 
         </ScrollView>
 
+        {isKeyboardOpen ? null : <InfoBottom /> } 
       </KeyboardAvoidingView>
-      {isKeyboardOpen ? null : <InfoBottom /> } 
       
       <NavBottom/>
       

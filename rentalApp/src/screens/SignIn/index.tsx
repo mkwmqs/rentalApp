@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,  Button } from 'native-base'
+import { View, Text,  Button, ScrollView } from 'native-base'
 import { Center, Divider, Radio, Stack } from 'native-base';
 import {  TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
@@ -7,12 +7,15 @@ import { InfoBottom } from '../../components/InfoBottom';
 import { ColoredButton } from '../../components/ColoredButton';
 import color from '../../styles/color';
 import { FontAwesome } from '@expo/vector-icons';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
 export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedValue, setSelectedValue] = useState("1");
+  const navigator = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleAppleLogin = () => {
     
@@ -31,15 +34,20 @@ export const SignIn = () => {
     
   };
 
-
+  function handleReturnScreen() {
+    navigator.navigate('')
+  }
 
   return (
     <>
     
-
-    <View style={{marginTop:'14%', paddingHorizontal:12 }} >
-    <Text >Email</Text>
-      <View style={{ borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:16}}>
+<ScrollView>
+        <View style={{marginVertical: 24, paddingHorizontal:8 }}>
+          <Icon style={{ paddingLeft: 22 }} name="arrow-left" size={18} onPress={handleReturnScreen} />
+        </View>
+         <View style={{marginVertical: 18, paddingHorizontal:8 }} >
+        <Text style={{marginTop:12}}>Email</Text>
+        <View style={{ borderRadius:10, borderWidth: 1,borderColor: 'grey', padding:16}}>
       
       <TextInput
         placeholder="Digite seu e-mail"
@@ -128,6 +136,7 @@ export const SignIn = () => {
     <View style={{gap:8, padding:10, margin:10}}>
     <InfoBottom/>
     </View>
+    </ScrollView>
     </>
   );
 };

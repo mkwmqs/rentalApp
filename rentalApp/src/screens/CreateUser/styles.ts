@@ -48,5 +48,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 0,
     margin: 0,
-  }
+  },
+  eyeIcon: {
+    padding: 5,
+  },
 });
