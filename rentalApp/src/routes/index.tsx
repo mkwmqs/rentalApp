@@ -10,12 +10,11 @@ import { PrivateRoutes } from './private.stack.routes';
 
 
 export function Routes() {
-  const {user} = useAuth();
-  console.log(user)
+  
   return (
     <NavigationContainer>
 
-   {   user ? <PrivateRoutes /> : <PublicRoutes /> }
+   <PublicRoutes /> 
     </NavigationContainer>
   )
 }

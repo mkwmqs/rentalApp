@@ -5,6 +5,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { CreateUser } from '../screens/CreateUser';
 import { PhoneConfirmation } from '../screens/PhoneConfirmation';
 import { SignIn } from '../screens/SignIn';
+import { Notification } from '../screens/EnableNotification';
 
 const StackRoutes = createStackNavigator();
 
@@ -18,6 +19,7 @@ export const PublicRoutes = () => {
         headerShown: false,
       }}
     >
+      
       <StackRoutes.Screen
         name="Welcome"
         component={Welcome}
@@ -33,6 +35,10 @@ export const PublicRoutes = () => {
       <StackRoutes.Screen
         name='PhoneConfirmation'
         component={PhoneConfirmation}
+      />
+      <StackRoutes.Screen
+        name="Notification"
+        component={Notification}
       />
 
 {/* <StackRoutes.Screen
