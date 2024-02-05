@@ -4,6 +4,7 @@ import {Text, TextInput, TouchableOpacity } from 'react-native';
 import { InfoBottom } from '../../components/InfoBottom';
 
 
+
 export const PhoneNumberVerification = () => {
   
 

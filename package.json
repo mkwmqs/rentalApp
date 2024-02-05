@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/diegoHDCz/rentalApp#readme",
   "dependencies": {
-    "expo": "^49.0.21"
+    "expo": "^49.0.21",
+    "react-native-camera": "^4.2.1",
+    "react-native-qrcode-svg": "^6.3.0"
   }
 }

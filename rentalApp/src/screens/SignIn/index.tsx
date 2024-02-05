@@ -35,7 +35,7 @@ export const SignIn = () => {
   };
 
   function handleReturnScreen() {
-    navigator.navigate('')
+    navigator.navigate('Welcome')
   }
 
   return (

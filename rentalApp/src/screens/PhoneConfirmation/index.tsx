@@ -32,6 +32,7 @@ export function PhoneConfirmation({ route }: PhoneConfirmationProps) {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.header}>Verificar o número do telefone celular </Text>
+      <Text style={{padding:4, margin:4}}>Enviamos um WhatsApp com um código de verificação para o número de celular acima.</Text>
       <View style={styles.contentLine}>
         <Text style={[styles.header, { fontSize: 16 }]}>BR +55 {phone} </Text>
         <TouchableOpacity onPress={handleChangePhone} >
@@ -39,7 +40,7 @@ export function PhoneConfirmation({ route }: PhoneConfirmationProps) {
         </TouchableOpacity>
       </View>
       <View style={styles.form}>
-        <Text>Insira o codigo</Text>
+        <Text style={{fontWeight: 'bold', margin:4}}>Insira o código</Text>
         <TextInput
           style={styles.input}
           keyboardType='numeric'
@@ -47,8 +48,11 @@ export function PhoneConfirmation({ route }: PhoneConfirmationProps) {
         <ColoredButton color={color.light_blue} title='Continuar' />
 
       </View>
+      <Text style={{padding:4, margin:4}}>Ao criar uma conta, você concorda com os Termos de Serviços, os Termos de Serviços de Pagamentos, 
+          a Política de Não Discriminação e reconhece a Política de Privacidade.</Text>
       <View style={styles.form}>
-        <ColoredButton color='#0003' title='Reenviar codigo' onPress={handleReSendCode} />
+        
+        <ColoredButton color='#0003' title='Reenviar código' onPress={handleReSendCode} />
       </View>
       <InfoBottom />
     </KeyboardAvoidingView>
