@@ -3,6 +3,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {  Card } from 'native-base';
+import { InfoBottom } from '../../components/InfoBottom';
+import { NavBottom } from '../../components/NavBottom';
 
 const Item = (iconName, text) => (
   <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 10 }}>
@@ -15,9 +17,9 @@ const Item = (iconName, text) => (
 
 export const ProfileScreen = () => {
   return (
-    <>
+    <View style={{flex:1}}>
     
-      <ScrollView>
+      <ScrollView  overflow={'scrollY'} >
         <Text style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20, fontWeight: 'bold', margin: 30, padding: 30, fontSize: 20 }}>Perfil</Text>
         <Center>
          <HStack space={5} alignItems="center">
@@ -32,7 +34,7 @@ export const ProfileScreen = () => {
 
         <Center>
           <Card>
-          <Image style={{ alignSelf: 'flex-end', padding: 30, marginVertical: 10 }}
+          <Image style={{ alignSelf: 'flex-end', padding: 20, marginVertical: 8 }}
       source={{ uri: 'https://img.freepik.com/fotos-premium/carro-amarelo-chevrolet-camaro-na-frente-de-uma-cena-de-montanha-ai-generativa_974533-29674.jpg?w=740' }} />
             <Text style={{ marginBottom: 10, textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}> Anuncie seu veículo na Ubiner </Text>
             <Text style={{ marginBottom: 0, textAlign: 'center' }}> Seu veículo trabalhando para você. Ganhe dinheiro com ele. </Text>
@@ -79,10 +81,13 @@ export const ProfileScreen = () => {
           {Item("book", "Licenças de código aberto")}
           <Divider mt={1} />
 
-          <Text style={{ marginVertical: 20, margin: 20 }}>Sair da Conta</Text>
+          <Text> Sair da Conta</Text>
         </View>
+        
+        
       </ScrollView>
-      </>
+      
+      </View>
     
   );
     }

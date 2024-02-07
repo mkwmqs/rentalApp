@@ -17,6 +17,7 @@ export const SignIn = () => {
   const [selectedValue, setSelectedValue] = useState("1");
   const navigator = useNavigation<StackNavigationProp<ParamListBase>>();
 
+
   const handleAppleLogin = () => {
     
   };
@@ -29,14 +30,15 @@ export const SignIn = () => {
     
   };
 
-  const handlePress = (value) => {
-    setSelectedValue(value);
+  // const handlePress = (value) => {
+  //   setSelectedValue(value);
     
-  };
+  // };
 
   function handleReturnScreen() {
     navigator.navigate('Welcome')
   }
+
 
   return (
     <>
@@ -67,43 +69,14 @@ export const SignIn = () => {
       />
       </View>
 
-      {/* <TouchableOpacity
-        style={{
-          borderRadius: 15,
-          borderWidth: 1,
-          borderColor: 'black',
-          padding: 10,
-          marginTop: 10,
-        }}
-        onPress={handleEmailLogin}
-      >
-        
-      </TouchableOpacity> */}
+     
       <Text style={{textAlign: 'center',fontWeight: 'bold', padding:4 }}>Enviaremos uma mensagem para você confirmando o seu número. Podem ser aplicadas tarifas padrões de dados e mensagens.</Text>
 
-      {/* <TouchableOpacity onPress={() => handlePress(selectedValue)}>
-          <Stack direction={{
-            base: "column",
-            md: "row"
-          }} alignItems={{
-            base: "flex-start",
-            md: "center"
-          }} space={4} w="75%" maxW="300px">
-            <Radio.Group
-              name="exampleGroup"
-              value={selectedValue}
-              accessibilityLabel="pick a size"
-              onChange={value => handlePress(value)}
-            >
-              <Radio value="1" colorScheme="red" size="sm" my={1}>
-                WhatsApp
-              </Radio>
-              <Radio value="2" colorScheme="red" size="sm" my={2}>
-                E-mail
-              </Radio>
-            </Radio.Group>
-          </Stack>
-        </TouchableOpacity> */}
+
+     
+     
+
+       
 
         <TouchableOpacity>
           <Text style={{textAlign:'center', padding: 4}}>Esqueceu a senha? Clique aqui</Text>
