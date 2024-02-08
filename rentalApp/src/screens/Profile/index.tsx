@@ -1,8 +1,8 @@
-import { Avatar,  Center,  Divider, HStack, Image, ScrollView, VStack } from 'native-base';
+import { Avatar, Center, Divider, HStack, Image, ScrollView, VStack } from 'native-base';
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {  Card } from 'native-base';
+import { Card } from 'native-base';
 import { InfoBottom } from '../../components/InfoBottom';
 import { NavBottom } from '../../components/NavBottom';
 
@@ -18,31 +18,31 @@ const Item = (iconName, text) => (
 export const ProfileScreen = () => {
   return (
     <View style={{flex:1}}>
-    
-      <ScrollView  overflow={'scrollY'} >
+
+      <ScrollView contentContainerStyle={{ flexGrow: 1,paddingBottom:'40%' }} >
         <Text style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20, fontWeight: 'bold', margin: 30, padding: 30, fontSize: 20 }}>Perfil</Text>
         <Center>
-         <HStack space={5} alignItems="center">
-          <Avatar bg="#D9D9D9" size="xl" source={{ uri: "" }} />
-           <VStack space={2}>
-               <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Nome</Text>
-               <Text>Mostrar o Perfil</Text>
-               </VStack>
-               </HStack>
-               </Center>
+          <HStack space={5} alignItems="center">
+            <Avatar bg="#D9D9D9" size="xl" source={{ uri: "" }} />
+            <VStack space={2}>
+              <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Nome</Text>
+              <Text>Mostrar o Perfil</Text>
+            </VStack>
+          </HStack>
+        </Center>
         <Divider mt={3} />
 
         <Center>
           <Card>
-          <Image style={{ alignSelf: 'flex-end', padding: 20, marginVertical: 8 }}
-      source={{ uri: 'https://img.freepik.com/fotos-premium/carro-amarelo-chevrolet-camaro-na-frente-de-uma-cena-de-montanha-ai-generativa_974533-29674.jpg?w=740' }} />
+            <Image style={{ alignSelf: 'flex-end', padding: 20, marginVertical: 8 }} alt={'foto de carro'}
+              source={{ uri: 'https://img.freepik.com/fotos-premium/carro-amarelo-chevrolet-camaro-na-frente-de-uma-cena-de-montanha-ai-generativa_974533-29674.jpg?w=740' }} />
             <Text style={{ marginBottom: 10, textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}> Anuncie seu veículo na Ubiner </Text>
             <Text style={{ marginBottom: 0, textAlign: 'center' }}> Seu veículo trabalhando para você. Ganhe dinheiro com ele. </Text>
           </Card>
         </Center>
 
         <View>
-          
+
           <Text style={{ fontWeight: 'bold', margin: 20, padding: 10 }}>Configurações</Text>
 
           {Item("payment", "Pagamentos")}
@@ -83,11 +83,11 @@ export const ProfileScreen = () => {
 
           <Text> Sair da Conta</Text>
         </View>
-        
-        
+
+
       </ScrollView>
-      
-      </View>
-    
+      <NavBottom />
+    </View>
+
   );
-    }
+}
