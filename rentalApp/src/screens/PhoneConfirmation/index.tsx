@@ -45,7 +45,7 @@ export function PhoneConfirmation({ route }: PhoneConfirmationProps) {
           style={styles.input}
           keyboardType='numeric'
           onChangeText={handleCodeChange} />
-        <ColoredButton color={color.light_blue} title='Continuar' />
+        <ColoredButton color={color.green} title='Continuar' />
 
       </View>
       <Text style={{padding:4, margin:4}}>Ao criar uma conta, você concorda com os Termos de Serviços, os Termos de Serviços de Pagamentos, 
