@@ -86,7 +86,7 @@ function handleEdit(isDisabled){
       <Text>{situacaoreceita}</Text>
     </View>
     <View style={{paddingHorizontal:10}}>
-        <ColoredButton color={color.light_blue} title='Confirmar Dados' />
+        <ColoredButton color={color.green} title='Confirmar Dados' />
       </View>
   </View>
 </ScrollView>

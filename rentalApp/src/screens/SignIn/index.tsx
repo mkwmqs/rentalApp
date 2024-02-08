@@ -110,7 +110,7 @@ export const SignIn = () => {
         </TouchableOpacity>
 
             <View style={{padding: 4,marginTop: 2,}}>
-<          ColoredButton color={color.light_blue} title='Continuar' />
+<          ColoredButton color={color.green} title='Continuar' />
              </View>
 
       <Divider mt={20}  style={{ width: '100%' }} />

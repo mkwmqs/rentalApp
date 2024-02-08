@@ -47,7 +47,7 @@ function handlerSignIn() {
       </View>
 
       <View mx={4} pl='4' pr='4'>
-        <ColoredButton color={color.light_blue} title='Já tenho conta' onPress={handlerSignIn} />
+        <ColoredButton color={color.green} title='Já tenho conta' onPress={handlerSignIn} />
       </View>
 
       <Text style={{ marginTop: 4,textAlign: 'center', padding: 8 }}>

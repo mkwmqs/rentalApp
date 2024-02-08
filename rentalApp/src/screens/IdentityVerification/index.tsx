@@ -80,7 +80,7 @@ export const IdentiVerification = () => {
       </View>
 
       <View style={{paddingHorizontal:10}}>
-        <ColoredButton color={color.light_blue} title='Continuar' />
+        <ColoredButton color={color.green} title='Continuar' />
       </View>
     </View>
   
