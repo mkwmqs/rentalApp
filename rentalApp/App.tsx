@@ -15,6 +15,7 @@ import { IdentiVerification } from './src/screens/IdentityVerification';
 import { ProfileVerification } from './src/screens/ProfileVerification';
 import { Welcome } from './src/screens/Welcome';
 import { SignIn } from './src/screens/SignIn';
+import { CategorySelector } from './src/components/CategorySelector';
 
 
 
@@ -39,7 +40,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <Welcome/>
+      <CategorySelector/>
     </NativeBaseProvider>
 
 
