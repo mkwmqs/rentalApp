@@ -71,7 +71,7 @@ export const ProfileInformation = () => {
         Seu perfil do Ubiner é uma parte importante de cada compartilhamento. Crie o seu para ajudar outros Hosters e Renters a conhecer você melhor.
       </Text>
       <View style={{paddingHorizontal:20, margin:10, padding:15}}>
-        <ColoredButton color={color.light_blue} title='Completar Perfil' />
+        <ColoredButton color={color.green} title='Completar Perfil' />
       </View>
     </ScrollView>
     <NavBottom/>
