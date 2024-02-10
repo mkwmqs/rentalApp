@@ -260,7 +260,7 @@ export function CreateUser() {
             />
 
             <ColoredButton
-              color={color.light_blue}
+              color={color.green}
               title='Continuar'
               onPress={handleSubmit(handleSignIn)}
             />
