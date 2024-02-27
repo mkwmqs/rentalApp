@@ -20,17 +20,12 @@ export const AdInsertionRoutes = () => {
         headerShown: false,
       }}
     >
-<Stack.Screen
-            name="AdSimulation"
-            component={AdSimulation}
-/>
-
       <Stack.Screen
             name="AdIntroduction"
             component={AdIntroduction}
         />      
       <Stack.Screen
-            name="AdSimulation******************"
+            name="AdSimulation"
             component={AdSimulation}
       />    
         <Stack.Screen

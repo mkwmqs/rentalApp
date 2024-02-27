@@ -63,12 +63,30 @@ export default function AdIntroduction() {
                             Estamos aqui para lhe ajudar a ter uma ótima experiência.
                     </Text>
                     <TouchableOpacity onPress={handlePress}>
-                        <Text style={styles.getAwareLink}>
-                            Saiba mais
-                        </Text>
+                        <Text style={styles.getAwareLink}>Saiba mais</Text>
                     </TouchableOpacity>
                 </View>
 
+
+                <View style={styles.boxShadow}>
+                    <Text style={styles.boxHeader}>Você está coberto</Text> 
+                    <Text style={styles.singleParagraph}>Contamos com a parceria da asseguradora Ubiner seguros.</Text>
+                    <TouchableOpacity onPress={handlePress}>
+                        <Text style={styles.getAwareLink}>Saiba mais</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+                <View style={styles.boxShadow}>
+                    <Text style={styles.boxHeader}>Nós protegemos você e seu Veículo</Text> 
+                    <Text style={styles.singleParagraph}>
+                        Desde a seleção dos Renters até o suporte durante 24 horas por dia, 7 dias por semana, você poderá contar com o nosso apoio.
+                        Você poderá compartilhar o seu veículo com confiança. 
+                    </Text>
+                    <TouchableOpacity onPress={handlePress}>
+                        <Text style={styles.getAwareLink}>Saiba mais</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <View>
                     <Text style={styles.bottomParagraph}>
@@ -90,23 +108,21 @@ export default function AdIntroduction() {
                         customStyles={{containerStyle:{marginTop: -4}, textStyle:{fontSize: 14}}}/>
                     <EnumeratedLineItem text={'Motorista adicional'} 
                         customStyles={{containerStyle:{marginTop: -4}, textStyle:{fontSize: 14}}}/>
-                
-
                 </View>
 
+                
+                <View style={styles.forwardButton}>
+                    <ColoredButton 
+                        title={'Eu quero ganhar dinheiro com o meu veículo'} 
+                        color={color.light_blue}
+                        onPress={() => navigation.navigate('AdSimulation')}
+                        />
+                </View>
 
-                <View style={{marginBottom: 160}}></View>
-
-
-            </View>
-
-
+            </View> 
         </ScrollView>
         <NavBottom/>
-        
     </View>
-        
-   
   );
 };
 
