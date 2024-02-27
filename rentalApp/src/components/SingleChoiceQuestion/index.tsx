@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import fonts from "../../styles/fonts";
 import color from "../../styles/color";
 import { styles } from '../SingleChoiceQuestion/styles';
@@ -12,7 +12,7 @@ interface SingleChoiceQuestionProps {
   disclaimer?: string;
   answersCodes?: any[] | undefined; 
   onAnswerSelected: (questionCode: string, answerCode: string) => void;
-  style?: object;
+  style?: StyleProp<ViewStyle>;
 }
 
 
@@ -23,7 +23,7 @@ export const SingleChoiceQuestion = ({ questionCode, question, choices,
 
   choices = choices || [];
 
-  if(!answersCodes){
+  if(!answersCodes){ //defaults to the own indexes whenever not passed on
     answersCodes = answersCodes || [];
     choices.map((option, index) => (
       answersCodes[index] = index

@@ -1,39 +1,16 @@
 import { Platform, StyleSheet } from "react-native";
 import fonts from "../../../styles/fonts";
 import color from "../../../styles/color";
-
-const generateBoxShadowStyle = (
-    xOffset,
-    yOffset,
-    shadowColorIos,
-    shadowOpacity,
-    shadowRadius,
-    elevation,
-    shadowColorAndroid,
-  ) => {
-    if (Platform.OS === 'ios') {
-      return {
-        shadowColor: shadowColorIos,
-        shadowOffset: { width: xOffset, height: yOffset },
-        shadowOpacity,
-        shadowRadius
-      };
-    } else if (Platform.OS === 'android') {
-      return {
-        elevation,
-        shadowColor: shadowColorAndroid,
-      };
-    }
-  };
+import { generateBoxShadowStyle } from "../../../styles/boxShadow";
 
 export const styles = StyleSheet.create({
   mainContainer: {
-    flexGrow: 1,
+    flex: 1,
   },
 
   bodyContainer:{
     marginHorizontal: 16,
-    marginTop: 24
+    marginTop: 24,
   },
 
   header:{

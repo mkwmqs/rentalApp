@@ -38,7 +38,7 @@ export function AdBehaviourQuestions()  {
 
             <SingleChoiceQuestion style={styles.questionsSection}
                 questionCode='101' 
-                question={'Qual o seu interesse financeiro ao compartilhar o veículo na Bibipi?'}
+                question='Qual o seu interesse financeiro ao compartilhar o veículo na Bibipi?'
                 choices={['Ter uma renda primária', 
                             'Gerar uma renda extra', 
                             'Cobrir os gastos do seu veículo',

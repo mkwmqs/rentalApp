@@ -32,12 +32,11 @@ export default function AdIntroduction() {
   const handlePress = () => {};
   return (
 
-    <View style={{flex:1}}>
+    <View style={styles.mainContainer}>
        
-        <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
-            <View>
-                <FullWidthImage obj={objImagem} />   
-            </View>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
+            
+            <FullWidthImage obj={objImagem} />   
 
             <View style={styles.bodyContainer}>
 

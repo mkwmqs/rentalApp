@@ -6,12 +6,12 @@ export const styles = StyleSheet.create({
     questionText: {
       fontSize: 16,
       fontFamily: fonts.medium,
-      marginBottom: 32,
+      marginBottom: 16,
     },
     answerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 16,
+      marginTop: 16,
     },
     radioContainer: {
       width: 18,

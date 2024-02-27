@@ -8,8 +8,10 @@ export const BackArrow = () => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
-      <Icon style={{ paddingLeft: 24 }} name="arrow-left" size={18} />
-    </TouchableOpacity>
+    <View style={{ margin: 16, width: '10%' }}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="arrow-left" size={18} />
+      </TouchableOpacity>
+    </View>
   );
 };

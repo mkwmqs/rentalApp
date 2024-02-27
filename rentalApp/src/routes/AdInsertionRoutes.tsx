@@ -9,6 +9,7 @@ import { AdAddOns } from '../screens/advertisement/AdAddOns';
 import { AdPicturesIntroduction } from '../screens/advertisement/AdPicturesIntroduction';
 import { AdPicturesInsertion } from '../screens/advertisement/AdPicturesInsertion';
 import AdIntroduction from '../screens/advertisement/AdIntroduction';
+import { AdSimulation } from '../screens/advertisement/AdSimulation';
 
 const Stack = createStackNavigator();
 
@@ -19,11 +20,19 @@ export const AdInsertionRoutes = () => {
         headerShown: false,
       }}
     >
+<Stack.Screen
+            name="AdSimulation"
+            component={AdSimulation}
+/>
 
       <Stack.Screen
             name="AdIntroduction"
             component={AdIntroduction}
         />      
+      <Stack.Screen
+            name="AdSimulation******************"
+            component={AdSimulation}
+      />    
         <Stack.Screen
             name="AdCover"
             component={AdCover}

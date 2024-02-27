@@ -1,4 +1,4 @@
-import { Inter_100Thin, Inter_400Regular, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
+import { Inter_100Thin, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
 import { NativeBaseProvider } from 'native-base';
 import { Profiler, useEffect } from 'react';
@@ -21,7 +21,7 @@ import { CategorySelector } from './src/components/CategorySelector';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Inter_100Thin, Inter_400Regular, Inter_700Bold
+    Inter_100Thin, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold
   });
   useEffect(() => {
     async function prepare() {
@@ -38,7 +38,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider >
-      <Welcome/>
+      <Routes/>
     </NativeBaseProvider>
 
 
