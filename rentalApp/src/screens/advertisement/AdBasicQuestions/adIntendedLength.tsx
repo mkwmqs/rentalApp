@@ -6,19 +6,17 @@ import { NavBottom } from '../../../components/NavBottom';
 import { ColoredButton } from '../../../components/ColoredButton';
 import color from '../../../styles/color';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {SingleChoiceQuestion} from '../../../components/SingleChoiceQuestion';
+import { SingleChoiceQuestion } from '../../../components/SingleChoiceQuestion';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { BackArrow } from '../../../components/BackArrow';
-import { QUESTION_NOTICE_PERIOD, SCREEN_AD_NOTICE_PERIOD } from '../advertisementParameters';
 import { AdContent, Question } from '../advertisementDomains';
+import { QUESTION_MAX_SHARING_PERIOD, QUESTION_MIN_SHARING_PERIOD, SCREEN_AD_LENGTH } from '../advertisementParameters';
 import { fetchAdTextData, fetchQuestionData, getAdTextByCode, getQuestionByCode } from '../adverstisementService';
+import { StraightLineSeparator } from '../../../components/StraightLineSeparator';
 
-type Answers = {
-    [questionCode: string]: string;
-  };
-  
 
-export function AdNoticePeriod() {
+
+export function AdIntendedLength() {
   const route = useRoute();
   const navigation = useNavigation<any>();
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -30,8 +28,8 @@ export function AdNoticePeriod() {
   useEffect(() => {
     const fetchApi = async() => {
       try{
-        const questionsRemote = await fetchQuestionData([QUESTION_NOTICE_PERIOD]);
-        const textsRemote = await fetchAdTextData(SCREEN_AD_NOTICE_PERIOD);
+        const questionsRemote = await fetchQuestionData([QUESTION_MIN_SHARING_PERIOD, QUESTION_MAX_SHARING_PERIOD]);
+        const textsRemote = await fetchAdTextData(SCREEN_AD_LENGTH);
         setQuestions(questionsRemote);
         setAdContents(textsRemote);
       } catch(error){
@@ -41,7 +39,6 @@ export function AdNoticePeriod() {
       }};
       fetchApi();
   }, []);
-
 
     const addAnswer = (questionCode: number, answerCode: string) => {
         setAnswers(prevAnswers => ({
@@ -56,23 +53,31 @@ export function AdNoticePeriod() {
 
   return (
     <View style={styles.mainContainer}>
+    
         <BackArrow/>
+
         <ScrollView style={styles.body} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
 
             <SingleChoiceQuestion style={styles.questionsSection}
-                question={getQuestionByCode(questions, QUESTION_NOTICE_PERIOD)}
+                question={getQuestionByCode(questions, QUESTION_MIN_SHARING_PERIOD)}
+                onAnswerSelected={handleSelectedAnswer} isDoubleSpaced={true}
+            />
+
+          <StraightLineSeparator style={styles.separator}/>
+
+          <SingleChoiceQuestion style={styles.questionsSection}
+                question={getQuestionByCode(questions, QUESTION_MAX_SHARING_PERIOD)}
                 onAnswerSelected={handleSelectedAnswer} isDoubleSpaced={true}
             />
 
 
-            <View style={styles.forwardButton}>
-                <ColoredButton 
-                    title={getAdTextByCode(adContents, 100)} 
-                    color={color.light_blue}
-                    onPress={() => navigation.navigate('AdIntendedLength', { answers: answers })}
-
-                    />
-            </View>
+          <View style={styles.forwardButton}>
+            <ColoredButton 
+              title={getAdTextByCode(adContents, 100)} 
+              color={color.light_blue}
+              onPress={() => navigation.navigate('AdAddOns', { answers: answers })}
+            />
+          </View>
 
         </ScrollView>
 

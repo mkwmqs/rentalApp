@@ -12,7 +12,7 @@ interface fullWidgthlImageProps {
 
 export function FullWidthImage({ obj }: fullWidgthlImageProps) {
   const { width,height } = useWindowDimensions();
-  const defaultHeightRatioValue = 1; //magicNumberIdentification
+  const defaultHeightRatioValue = 1; 
   obj.heightRatio = obj.heightRatio ?? defaultHeightRatioValue;
   obj.description = obj.description ?? '';
   return (

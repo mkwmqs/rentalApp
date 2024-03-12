@@ -1,14 +1,18 @@
 import { ScrollView } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native';
 import { styles } from '../AdBasicQuestions/styles';
 import { NavBottom } from '../../../components/NavBottom';
 import { ColoredButton } from '../../../components/ColoredButton';
 import color from '../../../styles/color';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SingleChoiceQuestion } from '../../../components/SingleChoiceQuestion';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { BackArrow } from '../../../components/BackArrow';
+import { AdContent, Question } from '../advertisementDomains';
+import { QUESTION_INTENDED_RENTAL_FREQUENCY, QUESTION_OWNER_USAGE_FREQUENCY, QUESTION_RENTAL_MOTIVATION, SCREEN_AD_BEHAVIOUR_QUESTIONS } from '../advertisementParameters';
+import { fetchAdTextData, fetchQuestionData, getAdTextByCode, getQuestionByCode } from '../adverstisementService';
+import AdCover from '../AdCover';
+import { StraightLineSeparator } from '../../../components/StraightLineSeparator';
 
 type Answers = {
   [questionCode: string]: string;
@@ -16,17 +20,38 @@ type Answers = {
 
 
 export function AdBehaviourQuestions()  {
-    const [answers, setAnswers] = useState({});    
-    const navigation = useNavigation<any>();
+  const route = useRoute();
+  const navigation = useNavigation<any>();
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [answers, setAnswers] = useState((route.params as any)?.answers || {});
+  const [adContents, setAdContents] = useState<AdContent[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchApi = async() => {
+      try{
+        const questionsRemote = await fetchQuestionData([QUESTION_OWNER_USAGE_FREQUENCY,
+                 QUESTION_RENTAL_MOTIVATION, QUESTION_INTENDED_RENTAL_FREQUENCY]);
+        const textsRemote = await fetchAdTextData(SCREEN_AD_BEHAVIOUR_QUESTIONS);
+        setQuestions(questionsRemote);
+        setAdContents(textsRemote);
+      } catch(error){
+        console.error(error.message);
+      } finally {
+        setLoading(false)
+      }};
+      fetchApi();
+  }, []);
+
   
-    const addAnswer = (questionCode: string, answerCode: string) => {
+    const addAnswer = (questionCode: number, answerCode: string) => {
         setAnswers(prevAnswers => ({
             ...prevAnswers,
-            [questionCode]: answerCode,
+            [questionCode]: [answerCode],
         }));
     };
 
-    const handleSelectedAnswer = (questionCode: string, answerCode: string) => {
+    const handleSelectedAnswer = (questionCode: number, answerCode: string) => {
         addAnswer(questionCode, answerCode);
       };
 
@@ -37,60 +62,29 @@ export function AdBehaviourQuestions()  {
         <ScrollView style={styles.body} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
 
             <SingleChoiceQuestion style={styles.questionsSection}
-                questionCode='101' 
-                question='Qual o seu interesse financeiro ao compartilhar o veículo na Bibipi?'
-                choices={['Ter uma renda primária', 
-                            'Gerar uma renda extra', 
-                            'Cobrir os gastos do seu veículo',
-                            'Expandir um negócio']}
-                answersCodes={['a', 'b', 'c', 'd']} // [mkw] alterar para valores do banco de dados ou algoritmo avaliador
+                question={getQuestionByCode(questions, QUESTION_RENTAL_MOTIVATION)}
                 onAnswerSelected={handleSelectedAnswer}
             />
+            <StraightLineSeparator/>
 
             <SingleChoiceQuestion style={styles.questionsSection}
-                questionCode='102'
-                question={'Qual a frequência que este veículo é utilizado por você ou sua família?'}
-                choices={['Nunca', 
-                            'Raramente, uma vez por semana ou menos', 
-                            'Até 3 dias por semana',
-                            'Até 6 dias por semana',
-                            'Todos os dias']}
-                answersCodes={['a', 'b', 'c', 'd', 'e']} // [mkw] alterar para valores do banco de dados ou algoritmo avaliador
+                question={getQuestionByCode(questions, QUESTION_OWNER_USAGE_FREQUENCY)}
                 onAnswerSelected={handleSelectedAnswer}
             />
+            <StraightLineSeparator/>
 
             <SingleChoiceQuestion style={styles.questionsSection}
-                questionCode='103'
-                question={'Qual a frequência que você deseja compartilhar o seu veículo?'}
-                choices={['Ainda não sei', 
-                            'Raramente, algumas vezes por mês', 
-                            'Em torno de 15 dias por mês',
-                            'Frequentemente, mais de 15 dias por mês',
-                            'Sempre']}
-                answersCodes={['a', 'b', 'c', 'd', 'e']} // [mkw] alterar para valores do banco de dados ou algoritmo avaliador
+                question={getQuestionByCode(questions, QUESTION_INTENDED_RENTAL_FREQUENCY)}
                 onAnswerSelected={handleSelectedAnswer}
             />
-
-
-    {/*************** MKW - APAGAR - Teste em tela ************/}
-    <View style={{borderColor: 'black', borderWidth: 1}}>
-        <Text style={{color: '#C30010'}}>[mkw] Quadro para mero teste. Apagar depois!</Text>
-      {Object.entries(answers).map(([questionCode, answerCode]) => (
-        <Text key={questionCode} style={{color: '#C30010'}}>
-          Question: {questionCode}, Answer: {answers[questionCode]}
-        </Text> 
-      ))}
-    </View>
-     {/*************** MKW - APAGAR - Teste em tela - Fim *****/}
-
 
 
             <View style={styles.forwardButton}>
                 <ColoredButton 
-                    title={'Continuar'} 
+                    title={getAdTextByCode(adContents, 100)} 
                     color={color.light_blue}
                     onPress={() => navigation.navigate('AdNoticePeriod', { answers: answers })}
-                    />
+                />
             </View>
         </ScrollView>
         <NavBottom/>

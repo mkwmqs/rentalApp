@@ -4,23 +4,30 @@ import { styles } from "./styles";
 
 
 interface CurrencyInputProps{
+  questionCode: number;
   currencySymbol?: string;
   customStyles?: {
     containerStyle?: ViewStyle;
     inputStyle?: TextStyle;
   };
+  onInputChange?: (questionCode: number, answerCode: string) => void; 
 }
+let typingTimeout;
 
-export function CurrencyInput({ currencySymbol = 'R$', customStyles}: CurrencyInputProps) {
+export function CurrencyInput({ questionCode, currencySymbol = 'R$', customStyles, onInputChange}: CurrencyInputProps) {
   const [value, setValue] = useState('');
   const MAX_DIGITS = 7;
 
   const handleChangeText = (text: string) => {
+    clearTimeout(typingTimeout);
     const numericValue = text.replace(/[^0-9]/g, '');
     const truncatedValue = numericValue.slice(0, MAX_DIGITS);
     const formattedNumericValue = truncatedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const newValue = `${formattedNumericValue}`;
     setValue(newValue);
+    typingTimeout = setTimeout(() => {
+      onInputChange(questionCode, newValue);
+    }, 500);
   };
 
   return (

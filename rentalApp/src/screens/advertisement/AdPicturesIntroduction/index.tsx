@@ -1,5 +1,5 @@
 import { ScrollView } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native';
 import { styles } from '../AdPicturesIntroduction/styles';
 import { NavBottom } from '../../../components/NavBottom';
@@ -8,12 +8,35 @@ import color from '../../../styles/color';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { BackArrow } from '../../../components/BackArrow';
+import { AdContent } from '../advertisementDomains';
+import { SCREEN_AD_PICTURES_INTRODUCTION } from '../advertisementParameters';
+import { fetchAdTextData, getAdTextByCode } from '../adverstisementService';
 
 
 export function AdPicturesIntroduction() {
     const route = useRoute();
     const navigation = useNavigation<any>();
     const [answers, setAnswers] = useState((route.params as any)?.answers || {});
+    const [adContents, setAdContents] = useState<AdContent[]>([]);
+    const [loading, setLoading] = useState(true);
+  
+  
+    useEffect(() => {
+      const fetchApi = async() => {
+        try{
+          const textsRemote = await fetchAdTextData(SCREEN_AD_PICTURES_INTRODUCTION);
+          setAdContents(textsRemote);
+        } catch(error){
+          console.error(error.message);
+        } finally {
+          setLoading(false)
+        }};
+        fetchApi();
+    }, []);
+
+    if(loading){
+        return null;
+    }
 
   return (
     <View style={styles.mainContainer}>
@@ -21,24 +44,17 @@ export function AdPicturesIntroduction() {
 
         <ScrollView style={styles.body} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
 
-            <Text style={styles.header}>
-                Juntos Vamos Produzir as Melhores Fotos do Seu Veículo
-            </Text>
-            <Text style={styles.description}>
-                Este passo é muito importante. A qualidade das fotos que vamos tirar será fundamental para conquistarmos novos Renters para o seu veículo.
-            </Text>
-            <Text style={styles.description}>
-                Depois de muitos estudos nós vamos te guiar para que você obtenha os melhores ângulos com as melhores posições para que a sua foto seja um sucesso.
-            </Text>
-            <Text style={styles.description}>
-                Para te ajudar na próxima tela iremos te mostrar como as suas fotos devem ficar em todo o processo de tirar as fotos.
-            </Text>
+            <Text style={styles.header}>{getAdTextByCode(adContents, 1)}</Text>
+            <Text style={styles.description}>{getAdTextByCode(adContents, 21)}</Text>
+            <Text style={styles.description}>{getAdTextByCode(adContents, 22)}</Text>
+            <Text style={styles.description}>{getAdTextByCode(adContents, 23)}</Text>
+                
 
         </ScrollView>
 
            <View style={styles.forwardButton}>
                 <ColoredButton 
-                    title={'Continuar'} 
+                    title={getAdTextByCode(adContents, 100)} 
                     color={color.light_blue}
                     onPress={() => navigation.navigate('AdPicturesInsertion', { answers: answers })}
 

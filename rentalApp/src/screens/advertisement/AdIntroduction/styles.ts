@@ -63,6 +63,11 @@ export const styles = StyleSheet.create({
     ...generateBoxShadowStyle(0, 0, '#0000001A', 20, 10, 16, '#0000001A'),
   },
 
+  forwardButton:{
+    marginTop: 32,
+    marginBottom: 160,
+  },
+
 });
 
 

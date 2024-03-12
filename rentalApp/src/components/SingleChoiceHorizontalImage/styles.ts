@@ -25,7 +25,13 @@ export const styles = StyleSheet.create({
     height: 5,
     width: '100%',
     backgroundColor: 'green',
-    marginTop: 8,
+    marginTop: 4,
+  },
+
+  noLine:{
+    height: 5,
+    width: '100%',
+    marginTop: 4,
   },
 
   selectedImageContainer: {

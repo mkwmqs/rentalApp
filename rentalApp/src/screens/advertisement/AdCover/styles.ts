@@ -24,7 +24,13 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.light,
     fontSize: 16,
     height: 100,
-  }
+  },
+
+  forwardButton:{
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
 
 
   

@@ -3,62 +3,52 @@ import { View, Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle } from '
 import fonts from "../../styles/fonts";
 import color from "../../styles/color";
 import { styles } from '../SingleChoiceQuestion/styles';
+import { Question } from '../../screens/advertisement/advertisementDomains';
+import { ERROR_MESSAGE_QUESTION_WITHOUT_CHOICES } from '../../screens/advertisement/advertisementParameters';
 
 
 interface SingleChoiceQuestionProps {
-  questionCode: string;
-  question: string;
-  choices: string[];
-  disclaimer?: string;
-  answersCodes?: any[] | undefined; 
-  onAnswerSelected: (questionCode: string, answerCode: string) => void;
+  question: Question
+  onAnswerSelected: (questionCode: number, answerCode: string) => void;
   style?: StyleProp<ViewStyle>;
+  isDoubleSpaced?: boolean
 }
 
 
 
-export const SingleChoiceQuestion = ({ questionCode, question, choices, 
-    disclaimer = '', answersCodes, onAnswerSelected, style = {}}) => {
+export const SingleChoiceQuestion = ({ question, onAnswerSelected, style = {}, isDoubleSpaced=false} : SingleChoiceQuestionProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-  choices = choices || [];
-
-  if(!answersCodes){ //defaults to the own indexes whenever not passed on
-    answersCodes = answersCodes || [];
-    choices.map((option, index) => (
-      answersCodes[index] = index
-    ))
-  }
-
-  if (choices.size !== answersCodes.size){
+  if(!question?.choices){
+    console.log(ERROR_MESSAGE_QUESTION_WITHOUT_CHOICES(question?.code?.toString()))
     return;
   }
 
 
-  const handleAnswerSelection = (index) => {
-    setSelectedAnswer(index);
-    onAnswerSelected(questionCode, answersCodes[index]);
+  const handleAnswerSelection = (choiceCode) => {
+    setSelectedAnswer(choiceCode);
+    onAnswerSelected(question.code, choiceCode);
   };
 
   return (
     <View style={style}>
-      <Text style={styles.questionText}>{question}</Text>
+      <Text style={styles.questionText}>{question.title}</Text>
 
-      {disclaimer && 
-        <Text style={styles.disclaimer}>{disclaimer}</Text>
+      {question.subtitle && 
+        <Text style={styles.disclaimer}>{question.subtitle}</Text>
       }
-
-      {choices.map((option, index) => (
+      <View style={styles.beforeFirstChoice}/>
+      {question.choices.map((option, index) => (
         <TouchableOpacity
-          key={index}
-          style={styles.answerContainer}
-          onPress={() => handleAnswerSelection(index)}
+          key={option.code}
+          style={isDoubleSpaced? styles.answerContainerDoubleSpaced : styles.answerContainer}
+          onPress={() => handleAnswerSelection(option.code)}
         >
           <View style={styles.textContainer}>
-            <Text style={styles.answerText}>{`${option}`}</Text>
+            <Text style={styles.answerText}>{option.text}</Text>
           </View>
           <View style={styles.radioContainer}>
-            <Radio selected={selectedAnswer === index} />
+            <Radio selected={selectedAnswer === option.code} />
           </View>
         </TouchableOpacity>
       ))}

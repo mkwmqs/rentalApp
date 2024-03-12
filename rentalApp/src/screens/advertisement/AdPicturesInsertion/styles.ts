@@ -14,9 +14,8 @@ export const styles = StyleSheet.create({
   },
 
   forwardButton:{
-    marginTop: 280,
     marginBottom: 160,
-    marginHorizontal: 16,
+    marginTop: 32
   },
 
   header:{

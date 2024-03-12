@@ -1,11 +1,13 @@
 import { StyleSheet } from "react-native";
 import fonts from "../../../styles/fonts";
 import color from "../../../styles/color";
+import { generateBoxShadowStyle } from "../../../styles/boxShadow";
+
 
 export const styles = StyleSheet.create({
   mainContainer: {
     marginTop: '8%',
-    flexGrow: 1,
+    flex: 1,
   },
 
   body:{
@@ -20,29 +22,15 @@ export const styles = StyleSheet.create({
   header:{
     fontFamily: fonts.medium,
     fontSize: 16,
-    marginTop: 32,
+    textAlign: 'center',
+    paddingHorizontal: 30
   },
 
-  disclaimer:{
-    fontFamily: fonts.light,
-    fontSize: 13,
-    marginTop: 32,
-  },
-
-  addOnsContainer:{
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 32,
-  },
-  
-  addOnsRow: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-
-  addOnFirstColumn:{
-    marginRight: 28,
+  vehicleBox:{
+    marginTop: 32
   }
+
+ 
+
 
 });

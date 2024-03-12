@@ -6,13 +6,24 @@ export const styles = StyleSheet.create({
     questionText: {
       fontSize: 16,
       fontFamily: fonts.medium,
-      marginBottom: 16,
+    
     },
+    beforeFirstChoice:{
+      marginTop: 16
+    },
+
     answerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       marginTop: 16,
     },
+
+    answerContainerDoubleSpaced: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 32,
+    },
+
     radioContainer: {
       width: 18,
       height: 16,
@@ -43,7 +54,7 @@ export const styles = StyleSheet.create({
     disclaimer:{
         fontSize: 13,
         fontFamily: fonts.light,
-        marginBottom: 32,
+        marginTop: 32,
     }
   });
 

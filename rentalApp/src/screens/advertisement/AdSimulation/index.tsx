@@ -1,93 +1,79 @@
 import { ScrollView } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from '../AdSimulation/styles';
 import { NavBottom } from '../../../components/NavBottom';
 import { ColoredButton } from '../../../components/ColoredButton';
 import color from '../../../styles/color';
 import { BackArrow } from '../../../components/BackArrow';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import budgetCar from '../../../../assets/budgetCar.png';
-import moto from '../../../../assets/moto.png';
-import sportsCar from '../../../../assets/sportsCar.png';
-import classicCar from '../../../../assets/classicCar.png';
-import luxCar from '../../../../assets/luxCar.png';
-import suvCar from '../../../../assets/SuvCar.png';
-import { SingleChoiceHorizontalImagem } from '../../../components/SingleChoiceHorizontalImage';
+import { SingleChoiceHorizontalImage } from '../../../components/SingleChoiceHorizontalImage';
 import { StraightLineSeparator } from '../../../components/StraightLineSeparator';
 import { SingleChoiceQuestion } from '../../../components/SingleChoiceQuestion';
 import { CurrencyInput } from '../../../components/CurrencyInput';
-import { getMonthlyAverageBusinessDaysCount, getMonthlyAverageWeekendDaysCount } from '../../../utils/dateUtils';
+import { calculateDailyFareFromVehicleCost, calculateMonthlyDaysByRentalFrequency, fetchAdTextData, fetchQuestionData, getAdTextByCode, getQuestionByCode, getQuestionSubTitleByCode, getQuestionTitleByCode } from '../adverstisementService';
+import { integerToTextWithSeparators } from '../../../utils/textUtils';
+import { CURRENCY_DISPLAY, QUESTION_RENTAL_FREQUENCY, QUESTION_VEHYCLE_TYPE_SIMULATION, QUESTION_VEHICLE_COST, SCREEN_AD_SIMULATION } from '../advertisementParameters';
+import { AdContent, Question } from '../advertisementDomains';
+
 
 export function AdSimulation() {
     const route = useRoute();
     const navigation = useNavigation<any>();
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [adTexts, setAdTexts] = useState<AdContent[]>([]);
     const [answers, setAnswers] = useState((route.params as any)?.answers || {});
-    const [estimateResult, setEstimateResult] = useState<number>(0);
-    const CURRENCY_DISPLAY = 'R$'
-    const DAILY_RENTAL_FARE = 70;
-    const QUESTION_CODE_VEHYCLE_TYPE = '101';
-    const QUESTION_CODE_RENTAL_FREQUENCY = '102';
+    const [estimatedFrequencyResult, setEstimatedFrequencyResult] = useState<number>(0);
+    const [estimatedMonthlyIncome, setEstimatedMontlyIncome] = useState<string>('0');
+    const [estimatedDailyFare, setEstimatedDailyFare] = useState<string>('0');
+    const [loading, setLoading] = useState(true);
+
+    
 
     useEffect(() => {
-        setEstimateResult(Math.floor(calculateEstimatedProfit()));
-      }, [answers[QUESTION_CODE_RENTAL_FREQUENCY]]);
+        const fetchApi = async() => {
+            try{
+                const questionsRemote = await fetchQuestionData([QUESTION_VEHYCLE_TYPE_SIMULATION,
+                    QUESTION_RENTAL_FREQUENCY, QUESTION_VEHICLE_COST]);
+                const textsRemote = await fetchAdTextData(SCREEN_AD_SIMULATION);
+                setQuestions(questionsRemote);
+                setAdTexts(textsRemote);
+            } catch(error){
+                console.error(error.message);
+            } finally {
+                setLoading(false)
+            }};
+        fetchApi();
+    }, []);
 
-    const addAnswer = (questionCode: string, answerCode: string) => {
+    useEffect(() => {
+        if(answers[QUESTION_RENTAL_FREQUENCY] && answers[QUESTION_VEHICLE_COST]){
+            const frequencyResult:number = Math.floor(calculateMonthlyDaysByRentalFrequency(answers[QUESTION_RENTAL_FREQUENCY][0]));
+            const dailyFare:number = calculateDailyFareFromVehicleCost(answers[QUESTION_VEHICLE_COST][0]);
+            setEstimatedFrequencyResult(frequencyResult);
+            setEstimatedDailyFare(integerToTextWithSeparators(dailyFare));
+            setEstimatedMontlyIncome(integerToTextWithSeparators(frequencyResult * dailyFare));
+        }
+      }, [answers[QUESTION_RENTAL_FREQUENCY], answers[QUESTION_VEHICLE_COST]]);
+
+    const addAnswer = (questionCode: number, answerCode: string) => {
         setAnswers(prevAnswers => ({
             ...prevAnswers,
-            [questionCode]: answerCode,
+            [questionCode]: [answerCode],
         }));
     };
 
-    const handleSelectedAnswer = (questionCode: string, answerCode: string) => {
+    const handleSelectedAnswer = (questionCode: number, answerCode: string) => {
         addAnswer(questionCode , answerCode);
       };
 
     const handleSelectedCarType = (answerCode: string) => {
-        handleSelectedAnswer(QUESTION_CODE_VEHYCLE_TYPE , answerCode);
+        handleSelectedAnswer(QUESTION_VEHYCLE_TYPE_SIMULATION , answerCode);
       };
 
-    const getEstimatedMonthlyIncome = () => {
-        return estimateResult * DAILY_RENTAL_FARE;
+      if(loading){
+        return null;
     }
-
-    const calculateEstimatedProfit = ():number => {
-        let numberOfMonthlyDays: number = 0;
-        switch(answers[QUESTION_CODE_RENTAL_FREQUENCY]){
-            case '1':
-                numberOfMonthlyDays = 365 / 12 / 7;
-                break;
-            case '2':
-                numberOfMonthlyDays = (365 / 12 / 7) * 2;
-                break;
-            case '3':
-                numberOfMonthlyDays = (365 / 12 / 7) * 3;
-                break;
-            case '4':
-                numberOfMonthlyDays = getMonthlyAverageBusinessDaysCount();
-                break;
-            case '5':
-                numberOfMonthlyDays = 30;
-                break;
-            case '6':
-                numberOfMonthlyDays = getMonthlyAverageWeekendDaysCount(); 
-                break;
-        }
-
-        return numberOfMonthlyDays;
-    }
-
-    const images = [
-        {answerCode: '1', source:budgetCar, subtitle: 'Popular'},
-        {answerCode: '2', source:moto, subtitle: 'Moto'},
-        {answerCode: '3', source:sportsCar, subtitle: 'Esportivo'},
-        {answerCode: '4', source:classicCar, subtitle: 'Clássico'},
-        {answerCode: '5', source:luxCar, subtitle: 'Luxuoso'},
-        {answerCode: '6', source:suvCar, subtitle: 'SUV'}
-    ];
-
-
 
   return (
     <View style={styles.mainContainer}>
@@ -95,59 +81,58 @@ export function AdSimulation() {
 
         <ScrollView style={styles.body} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
 
-            <Text style={styles.header}>Simule como ganhar dinheiro com seu veículo</Text>
-            <Text style={styles.subtitle}>Escolha o tipo:</Text>
+            <Text style={styles.header}>{getAdTextByCode(adTexts, 1)}</Text>
+            <Text style={styles.subtitle}>{getQuestionTitleByCode(questions, QUESTION_VEHYCLE_TYPE_SIMULATION)}</Text>
 
-            <SingleChoiceHorizontalImagem images={images}  onAnswerSelected={handleSelectedCarType} style={styles.carsImages}/>
+            <SingleChoiceHorizontalImage onAnswerSelected={handleSelectedCarType} style={styles.carsImages}
+                question={getQuestionByCode(questions, QUESTION_VEHYCLE_TYPE_SIMULATION)}/>
             <StraightLineSeparator/>
 
-
             <SingleChoiceQuestion style={styles.frequencyQuestionContainer}
-                questionCode = {QUESTION_CODE_RENTAL_FREQUENCY}
-                question='Qual a frequência que você deseja compartilhar o seu veículo na semana?'
-                choices={['1 dia qualquer',
-                            '2 dias quaisquer',
-                            '3 dias quaisquer',
-                            'Todos os dias úteis',
-                            'Todos os dias',
-                            'Todos os finais de semana']}
-                answersCodes={['1', '2', '3', '4', '5', '6']}
+                question={getQuestionByCode(questions, QUESTION_RENTAL_FREQUENCY)}
                 onAnswerSelected={handleSelectedAnswer}
             />
             <StraightLineSeparator/>
 
-
             <View style={styles.valuationQuestionContainer}>
-                <Text style={styles.valuationQuestionHeader}>Qual o valor estimado do seu veículo?</Text>
-                <CurrencyInput customStyles={{containerStyle:styles.currencyContainer, inputStyle:styles.currencyInput}}/>
-                <Text style={styles.valuationDisclaimer}>Nesta simulação, a diária do compartilhamento
-                    é estimada pelo valor total do veículo</Text>
+                <Text style={styles.valuationQuestionHeader}>{getQuestionTitleByCode(questions, QUESTION_VEHICLE_COST)}</Text>
+                <CurrencyInput customStyles={{containerStyle:styles.currencyContainer, inputStyle:styles.currencyInput}}
+                    questionCode = {QUESTION_VEHICLE_COST} onInputChange={handleSelectedAnswer}/>
+                <Text style={styles.valuationDisclaimer}>{getQuestionSubTitleByCode(questions, QUESTION_VEHICLE_COST)}</Text>
             </View>
             <StraightLineSeparator/>
 
-            <View>{estimateResult ? (
+            <View>{estimatedFrequencyResult ? (
                 <View style={styles.estimateResultContainer}>
-                    <Text style={styles.estimateResultHeader}>Estimativa</Text>
-                    <Text style={styles.estimateResultDisclaimer}>{estimateResult} compartilhamentos a {CURRENCY_DISPLAY} {DAILY_RENTAL_FARE} por dia</Text>
+                    <Text style={styles.estimateResultHeader}>{getAdTextByCode(adTexts, 2)}</Text>
+                    <Text style={styles.estimateResultDisclaimer}>{getAdTextByCode(adTexts, 3)
+                        .replace('{sharingFrequency}', estimatedFrequencyResult.toString())
+                        .replace('{currency}', CURRENCY_DISPLAY)
+                        .replace('{dailyCost}', estimatedDailyFare)
+                        }</Text>
                     <View style={styles.estimateResultIncomeContainer}>
                         <View style={styles.estimateResultIncomeBox}>
-                        <Text style={styles.estimateResultIncomeAmount}>{CURRENCY_DISPLAY} {getEstimatedMonthlyIncome()}</Text>
-                        <Text style={styles.estimateResultIncomeSubtitle}>(Renda mensal estimada)</Text>
-                    </View>
+                            <Text style={styles.estimateResultIncomeAmount}>{CURRENCY_DISPLAY} {estimatedMonthlyIncome}</Text>
+                            <Text style={styles.estimateResultIncomeSubtitle}>{getAdTextByCode(adTexts, 4)}</Text>
+                        </View>
                     </View>
                 </View> 
                 ) : null}
             </View>
 
 
-            
+            {//CONTINUAR AQUI, link como seus ganhos....
+            //continuar aqui, imagem
+            //continuar aqui, quadro qualquer dúvida chame a getCurrentYear
+            //continuar aqui, perguntas frequentes
+            }
 
 
             <View style={styles.forwardButton}>
                 <ColoredButton 
-                    title={'Continuar'} 
+                    title={getAdTextByCode(adTexts, 100)} 
                     color={color.light_blue}
-                    onPress={() => navigation.navigate('AdPicturesIntroduction', { answers: answers })}
+                    onPress={() => navigation.navigate('AdProfileIntroduction', { answers: answers })}
                     />
             </View>
         </ScrollView>
