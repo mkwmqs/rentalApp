@@ -5,7 +5,7 @@ import color from "../../../styles/color";
 export const styles = StyleSheet.create({
   mainContainer: {
     marginTop: '8%',
-    flexGrow: 1,
+    flex: 1,
   },
 
   body:{
