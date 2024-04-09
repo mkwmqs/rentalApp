@@ -139,7 +139,7 @@ export function AdFareEstimation() {
                 <ColoredButton 
                     title={getAdTextByCode(adContents, 100)} 
                     color={color.light_green}
-                    onPress={() => navigation.navigate('AdProfileSecondStep', { answers: answers, pictures: pictures })}
+                    onPress={() => /* TODO navigation.navigate('AdProfileSecondStep', { answers: answers, pictures: pictures })*/{}}
                     />
             </View>
 
