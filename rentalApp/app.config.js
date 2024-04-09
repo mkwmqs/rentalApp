@@ -8,5 +8,15 @@ module.exports = {
     APP_ID: process.env.APP_ID,
     MEASUREMENT_ID: process.env.MEASUREMENT_ID,
     TESTE: process.env.TESTE
-  }
+  },
+  plugins: [
+    [
+      'expo-image-picker',
+      {
+        pickerOptions: {
+          mediaTypes: ['photo'], // Adjust this as needed
+        },
+      },
+    ],
+  ],
 };

@@ -3,18 +3,18 @@ import React from 'react';
 
 import { useAuth } from '../hooks/useAuth';
 import { PublicRoutes } from './public.stack.routes';
+import { AdInsertionRoutes } from './AdInsertionRoutes';
 
 
-
+//const { user } = useAuth();
+//console.log(user)
 
 
 export function Routes() {
-  const { user } = useAuth();
-  console.log(user)
   
   return (
     <NavigationContainer>
-      <PublicRoutes />
+      <AdInsertionRoutes />
     </NavigationContainer>
   )
 }

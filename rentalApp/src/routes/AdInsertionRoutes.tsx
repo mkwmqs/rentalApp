@@ -14,6 +14,8 @@ import { AdProfileFirstStep } from '../screens/advertisement/AdProfileFirstStep'
 import { AdVehicleSelection } from '../screens/advertisement/AdVehicleSelection';
 import { AdVehicleDetails } from '../screens/advertisement/AdVehicleDetails';
 import { AdIntendedLength } from '../screens/advertisement/AdBasicQuestions/adIntendedLength';
+import { AdProfileSecondStep } from '../screens/advertisement/AdProfileSecondStep';
+import { AdFareEstimation } from '../screens/advertisement/AdFareEstimation';
 
 const Stack = createStackNavigator();
 
@@ -72,11 +74,19 @@ export const AdInsertionRoutes = () => {
             name="AdPicturesIntroduction"
             component={AdPicturesIntroduction}
         />
+       
         <Stack.Screen
             name="AdPicturesInsertion"
             component={AdPicturesInsertion}
         />
-
+        <Stack.Screen
+            name="AdProfileSecondStep"
+            component={AdProfileSecondStep}
+        />
+        <Stack.Screen
+            name="AdFareEstimation"
+            component={AdFareEstimation}
+        />
     </Stack.Navigator>
   )
 }

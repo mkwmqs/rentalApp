@@ -55,7 +55,7 @@ export function AdPicturesIntroduction() {
            <View style={styles.forwardButton}>
                 <ColoredButton 
                     title={getAdTextByCode(adContents, 100)} 
-                    color={color.light_blue}
+                    color={color.light_green}
                     onPress={() => navigation.navigate('AdPicturesInsertion', { answers: answers })}
 
                     />

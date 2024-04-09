@@ -23,8 +23,20 @@ export interface AdScreen{
     code: number,
     title: string,
     texts: AdContent[],
-
 };
+
+export interface AdComponentContent {
+  code: number,
+  text: string,
+  image?: ImageSourcePropType 
+};
+
+export interface AdComponent{
+  code: number,
+  title: string,
+  texts: AdComponentContent[],
+};
+
 
 export interface AdVehicle{
   make: string,
@@ -35,6 +47,20 @@ export interface AdVehicle{
   type: number
 };
 
+export interface AdPicture {
+  base64: string,
+  uri: string,
+  questionCode: number,
+  choiceCode: string,
+  sourceType: number //1-library, 2-camera
+};
 
 
-
+export interface AdFareEstimates{
+  averageFareBibipi: number, 
+  averageFareLargeRenters: number, 
+  basicFare: number, 
+  serviceFee: number, 
+  netPrice: number, 
+  netProceeds: number
+}

@@ -9,10 +9,9 @@ export const styles = StyleSheet.create({
   addOnsContainer:{
     flex: 1,
     alignItems: 'center',
-    marginTop: 32,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     flexWrap:'wrap'
   },
   
@@ -32,7 +31,10 @@ export const styles = StyleSheet.create({
   },
 
   addOnFirstColumn:{
-    marginRight: 24,
+    //i deleted right margin as i changed justifyContent to space-evenly on addOnsContainer
+    //do not forget to (re)change to justifyContent to center on addOnsContainer if margin right gets set
+    //it would aldo be necessary to make an adjustment to the case when theres only one picture in a row
+    //marginRight: 24,
   },
 
   shapeDefaults: {
@@ -40,7 +42,7 @@ export const styles = StyleSheet.create({
     height: 95,
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'black',
+    //color: 'black', shapeDefaults is shared with Image obj which doesnt have color as a valid key
     borderWidth: 0.5,
     borderColor: '#0000001A',
     borderRadius: 10,  
@@ -58,13 +60,20 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
- 
-
   imagePreview: {
-    width: 400,
-    height: 300,
-    resizeMode: 'cover'
-  }
+    resizeMode:'stretch',
+    opacity: 0.3,
+  },
+
+  overlayTextContainer: {
+    position: 'absolute', // Position text absolutely to overlay it on the image
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center', // Center the text vertically
+    alignItems: 'center', // Center the text horizontally
+  },
 
 
   });

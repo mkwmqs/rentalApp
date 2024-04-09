@@ -8,7 +8,7 @@ import classicCar from '../../../../assets/classicCar.png';
 import luxCar from '../../../../assets/luxCar.png';
 import suvCar from '../../../../assets/SuvCar.png';
 import { ImageSourcePropType } from "react-native";
-import { QUESTION_RENTAL_FREQUENCY, QUESTION_VEHICLE_TYPE_REGISTRATION, QUESTION_VEHYCLE_TYPE_SIMULATION, QUESTION_VEHICLE_COST, QUESTION_VEHICLE_KM, SCREEN_AD_INTRODUCTION, SCREEN_AD_PROFILE_FIRST_STEP, SCREEN_AD_PROFILE_INTRODUCTION, SCREEN_AD_SIMULATION, SCREEN_AD_VEHICLE_SELECTION, VEHICLE_TYPE_AUTO, VEHICLE_TYPE_MOTO, SCREEN_AD_VEHICLE_DETAILS, QUESTION_VEHICLE_TRANSMISSION_TYPE, QUESTION_VEHICLE_DETAILS, QUESTION_VEHICLE_SEATS_CAPACITY, QUESTION_VEHICLE_DOORS_TOTAL, QUESTION_VEHICLE_CONDITION, QUESTION_VEHICLE_CONDITION_DETAILS, SCREEN_AD_COVER, QUESTION_RENTAL_MOTIVATION, QUESTION_OWNER_USAGE_FREQUENCY, QUESTION_INTENDED_RENTAL_FREQUENCY, SCREEN_AD_BEHAVIOUR_QUESTIONS, QUESTION_NOTICE_PERIOD, SCREEN_AD_NOTICE, SCREEN_AD_NOTICE_PERIOD, SCREEN_AD_LENGTH, QUESTION_MIN_SHARING_PERIOD, QUESTION_MAX_SHARING_PERIOD, SCREEN_AD_ADD_ONS, QUESTIONS_ADD_ONS, SCREEN_AD_PICTURES_INTRODUCTION, SCREEN_AD_PICTURES_INSERTION, QUESTIONS_AD_PICTURES_INSERTION } from "./advertisementParameters";
+import { QUESTION_RENTAL_FREQUENCY, QUESTION_VEHICLE_TYPE_REGISTRATION, QUESTION_VEHYCLE_TYPE_SIMULATION, QUESTION_VEHICLE_COST, QUESTION_VEHICLE_KM, SCREEN_AD_INTRODUCTION, SCREEN_AD_PROFILE_FIRST_STEP, SCREEN_AD_PROFILE_INTRODUCTION, SCREEN_AD_SIMULATION, SCREEN_AD_VEHICLE_SELECTION, VEHICLE_TYPE_AUTO, VEHICLE_TYPE_MOTO, SCREEN_AD_VEHICLE_DETAILS, QUESTION_VEHICLE_TRANSMISSION_TYPE, QUESTION_VEHICLE_DETAILS, QUESTION_VEHICLE_SEATS_CAPACITY, QUESTION_VEHICLE_DOORS_TOTAL, QUESTION_VEHICLE_CONDITION, QUESTION_VEHICLE_CONDITION_DETAILS, SCREEN_AD_COVER, QUESTION_RENTAL_MOTIVATION, QUESTION_OWNER_USAGE_FREQUENCY, QUESTION_INTENDED_RENTAL_FREQUENCY, SCREEN_AD_BEHAVIOUR_QUESTIONS, QUESTION_NOTICE_PERIOD, SCREEN_AD_NOTICE, SCREEN_AD_NOTICE_PERIOD, SCREEN_AD_LENGTH, QUESTION_MIN_SHARING_PERIOD, QUESTION_MAX_SHARING_PERIOD, SCREEN_AD_ADD_ONS, QUESTIONS_ADD_ONS, SCREEN_AD_PICTURES_INTRODUCTION, SCREEN_AD_PICTURES_INSERTION, QUESTIONS_AD_PICTURES_INSERTION, COMPONENT_PICTURE_SELECTOR, SCREEN_AD_PROFILE_SECOND_STEP, SCREEN_AD_FARE_REGISTRATION } from "./advertisementParameters";
 import { getQuestionByCode } from "./adverstisementService";
 
 
@@ -188,7 +188,7 @@ export const adQuestions: Question[] = [
         code: QUESTIONS_AD_PICTURES_INSERTION,
         title: '',
         choices: [
-            //{code: '1', text: 'Foto de capa'},
+            {code: '1', text: 'Foto de capa'},
             {code: '2', text: 'Foto de frente'},
             {code: '3', text: 'Foto da traseira'},
             {code: '4', text: 'Foto da lateral esquerda'},
@@ -216,6 +216,10 @@ export const adOwnedVehicles = [
     {make: 'FIAT', model: 'Palio', plate: 'ABC-1A13', yearBuilt: 2015, color: 'Verde', type: VEHICLE_TYPE_AUTO},
     {make: 'CB', model: '400', plate: 'ABC-1A14', yearBuilt: 1985, color: 'Prata', type: VEHICLE_TYPE_MOTO}
 ];
+
+export const adAverageFareEstimates = {
+    averageFareBibipi: 80.00, averageFareLargeRenters: 100.00, basicFare: 80, serviceFee: 10, netPrice: 90, netProceeds: 70, 
+};
 
 ////////////////////////////
 //      adScreens
@@ -291,7 +295,6 @@ export const adScreens = [
             {code: 100, text: 'Continuar'}
         ]
     },
-
     {
         code: SCREEN_AD_VEHICLE_SELECTION, //6
         title: 'Ad Vehicle Selection',
@@ -372,8 +375,56 @@ export const adScreens = [
         title: 'Ad Pictures Insertion',
         texts: [
             {code: 1, text: 'Vamos incluir as fotos do seu veículo'},
-            {code: 20, image: require('../../../assets/eye-small.png'), text:''},
             {code: 100, text: 'Continuar'},
         ]
     },    
+    {
+        code: SCREEN_AD_PROFILE_SECOND_STEP, //15
+        title: 'Ad Profile Second Step',
+        texts: [
+            {code: 1, text: '2º passo'},
+            {code: 11, image: require('../../../assets/hands-touching-keys-big.png'), text:''},
+            {code: 20, text: 'Conclua e Publique'},
+            {code: 21, text: 'Por último, você definirá seu preço por dia, a disponibilidade, as regras e preferências. Responda a algumas perguntas rápidas e publique quando estiver tudo pronto.'},
+            {code: 100, text: 'Continuar'}
+        ]
+    },    
+    {
+        code: SCREEN_AD_FARE_REGISTRATION, //16
+        title: 'Ad Fare Registration',
+        texts: [
+            {code: 1, text: 'Escolha o preço do aluguel diário do seu veículo'},
+            {code: 11, text:'O valor médio de aluguel de um veículo parecido com o seu na Bibipi é de {currency} {averageFareByVehicleTypeBibipi}.'},
+            {code: 12, text: 'O valor médio de aluguel de um veículo parecido nas locadoras é de {currency} {averageFareByVehicleTypeLargeRenters}.'},
+            {code: 13, text: 'saiba mais sobre preço'},
+            {code: 21, text: 'Preço básico'},
+            {code: 22, text: 'Taxa de serviço do Renter'},
+            {code: 31, text: 'Preço para o Renter sem imposto'},
+            {code: 41, text: 'Você receberá'},
+            {code: 51, text: 'Você pode optar em utilizar o nosso Preço Flexível'},
+            {code: 52, text: 'Saiba mais'},
+            {code: 100, text: 'Continuar'},
+            {code: 101, text: 'Compara aqui'},
+            {code: 102, text: 'Preço Flexível'},
+        ]
+    },        
+];
+
+
+
+////////////////////////////
+//      adComponents
+////////////////////////////
+
+export const adComponents = [
+    {
+        code: COMPONENT_PICTURE_SELECTOR, //1001
+        title: 'Picture Selector Question',
+        texts: [
+            {code: 1, text: 'Abrir Galeria'},
+            {code: 2, text: 'Usar Câmera'},
+            {code: 3, text: 'Fechar'},
+            {code: 20, image: require('../../../assets/eye-small.png'), text:''},
+        ]
+    },
 ];

@@ -16,6 +16,13 @@ export const SCREEN_AD_LENGTH = 11;
 export const SCREEN_AD_ADD_ONS = 12;
 export const SCREEN_AD_PICTURES_INTRODUCTION = 13;
 export const SCREEN_AD_PICTURES_INSERTION = 14;
+export const SCREEN_AD_PROFILE_SECOND_STEP = 15;
+export const SCREEN_AD_FARE_REGISTRATION = 16;
+
+
+//components codes
+export const COMPONENT_PICTURE_SELECTOR = 1001;
+
 
 //questions - adSimulation
 export const QUESTION_VEHYCLE_TYPE_SIMULATION = 101;
@@ -75,3 +82,5 @@ export const ERROR_MESSAGE_ADTEXTS_NOTFOUND_DEFAULTS = (screenCode: number) => '
 export const ERROR_MESSAGE_NO_VEHICLE_FOUND = 'Erro ao buscar veículos do hoster';
 export const ERROR_MULTIPLE_CHOICE_JUSTIFICATION_BICOLUMNS_NOT_ALLOWED = 'Componente MultipleChoiceQuestion não permite receber ao mesmo tempo os argumentos justification e sharedColumns';
 export const ERROR_MULTIPLE_CHOICE_JUSTIFICATION_PROPERTIES_INCOMPLETE = 'Componente MultipleChoiceQuestion. Ambas as propriedades justification precisam ser enviadas, ou nenhuma delas';
+export const ERROR_PICTURE_SELECTOR_QUESTION_UNEXPECTED_QUESTION = (expectedQuestion: string, unexpectedQuestion: string) => 'Componente PictureSelectorQuestion para a questão ' + expectedQuestion + ' recebeu uma imagem marcada como questão ' + unexpectedQuestion;
+export const ERROR_UTIL_INVALID_INPUT_NUMBER = 'O número informado no formato de texto deve conter um único separador, seja vírgula ou ponto';

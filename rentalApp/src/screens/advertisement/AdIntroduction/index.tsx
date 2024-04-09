@@ -126,7 +126,7 @@ return (
                 <View style={styles.forwardButton}>
                     <ColoredButton 
                         title={getAdTextByCode(adTexts, 101)}
-                        color={color.light_blue}
+                        color={color.light_green}
                         onPress={() => navigation.navigate('AdSimulation')}
                         />
                 </View>

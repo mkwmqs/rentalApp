@@ -82,7 +82,7 @@ export function AdBehaviourQuestions()  {
             <View style={styles.forwardButton}>
                 <ColoredButton 
                     title={getAdTextByCode(adContents, 100)} 
-                    color={color.light_blue}
+                    color={color.light_green}
                     onPress={() => navigation.navigate('AdNoticePeriod', { answers: answers })}
                 />
             </View>

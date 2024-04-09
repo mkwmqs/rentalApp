@@ -13,7 +13,7 @@ export function Welcome() {
 
   const navigator = useNavigation<StackNavigationProp<ParamListBase>>()
   function handlerCreatUser(){
-    navigator.navigate('CreateUser')
+    navigator.navigate('CreateUser');
   }
 
   const newNavigator = useNavigation<StackNavigationProp<ParamListBase>>();

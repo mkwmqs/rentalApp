@@ -131,7 +131,7 @@ export function AdSimulation() {
             <View style={styles.forwardButton}>
                 <ColoredButton 
                     title={getAdTextByCode(adTexts, 100)} 
-                    color={color.light_blue}
+                    color={color.light_green}
                     onPress={() => navigation.navigate('AdProfileIntroduction', { answers: answers })}
                     />
             </View>
